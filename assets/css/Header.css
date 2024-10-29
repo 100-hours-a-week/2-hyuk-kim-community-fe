@@ -1,8 +1,8 @@
-.wrap {
+.header {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 100vw;
     height: 104px;
     border-bottom: black solid 1px;
 }

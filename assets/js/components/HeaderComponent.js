@@ -11,9 +11,9 @@ class HeaderComponent extends HTMLElement {
 
     template() {
         return `
-        <link rel="stylesheet" type="text/css" href="/assets/css/header.css">
+        <link rel="stylesheet" type="text/css" href="/assets/css/Header.css">
         <header>
-            <div class="wrap">
+            <div class="header">
                 <p id="logo">아무 말 대잔치</p>
             </div>
         </header>
