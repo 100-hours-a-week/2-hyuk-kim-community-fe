@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/SignUpPage.css">
+    <link rel="stylesheet" href="/assets/css/Common.css">
+    <title>SignUp</title>
 </head>
 <body>
+<header-component></header-component>
 
+<section class="wrap">
+    <article class="login">
+        <p id="loginText">회원가입</p>
+    </article>
+<!--    <article id="article-auth">-->
+        <auth-component></auth-component>
+<!--    </article>-->
+    <article>
+        <button id="login-button" class="button-purple">회원가입</button>
+        <p id="signup-button" class="button-text">로그인하러 가기</p>
+    </article>
+</section>
+
+<script type="module" src="/assets/js/SignUpPage.js"></script>
+<script type="module" src="/assets/js/components/AuthComponent.js"></script>
+<script type="module" src="/assets/js/components/HeaderComponent.js"></script>
 </body>
 </html>

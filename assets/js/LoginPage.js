@@ -1,12 +1,14 @@
 let checkEmail = false;
 let checkPassword = false;
+let authComponent;
 
 document.addEventListener('DOMContentLoaded', () => {
-    const emailInput = document.querySelector("input[type='email']");
-    const passwordInput = document.querySelector("input[type='password']");
+    authComponent = document.querySelector('auth-component');
+    const emailInput = authComponent.getEmailInput;
+    const passwordInput = authComponent.getPasswordInput;
+
     const loginButton = document.querySelector("#login-button");
     const signupButton = document.querySelector("#signup-button");
-    loginButton.disabled = true;
 
     emailInput.addEventListener("input", (event) => {
         validateEmail(event.target.value);
@@ -18,12 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
         activeLoginButton();
     });
 
+    loginButton.disabled = true;
     loginButton.addEventListener("click", (event) => {
         window.location.href = "/html/Posts.html";
     })
 
     signupButton.addEventListener("click", (event) => {
-        window.location.href = "/html/SignUpPage.html";
+        window.location.href = "SignUpPage.html";
     })
 
 
@@ -56,14 +59,18 @@ function validatePassword(password) {
 }
 
 function visibleHelper(text) {
-    const helperTextElement = document.querySelector(".helper-text");
+    // const helperTextElement = document.querySelector(".helper-text");
+    // const helperTextElement = authComponent.getPasswordHelperText;
+    const helperTextElement = authComponent.getHelperText("password");
     helperTextElement.textContent = text;
     helperTextElement.style.visibility = "visible";
 }
 
 function invisibleHelper() {
     console.log("valid success!!")
-    const helperTextElement = document.querySelector(".helper-text");
+    // const helperTextElement = document.querySelector(".helper-text");
+    // const helperTextElement = authComponent.getPasswordHelperText;
+    const helperTextElement = authComponent.getHelperText("password");
     helperTextElement.style.visibility = "hidden";
 }
 

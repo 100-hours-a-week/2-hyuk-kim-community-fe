@@ -14,20 +14,15 @@
         <article class="login">
             <p id="loginText">로그인</p>
         </article>
-        <article id="article-login">
-            <p class="text-guide"> 이메일 </p>
-            <input type="email" class="input-userinfo" placeholder="이메일을 입력하세요">
-            <p class="text-guide"> 비밀번호 </p>
-            <input type="password" class="input-userinfo" placeholder="비밀번호 입력하세요">
-            <p class="helper-text"> *helper text </p>
-        </article>
+        <auth-component></auth-component>
         <article>
             <button id="login-button" class="button-purple">로그인</button>
             <p id="signup-button" class="button-text">회원가입</p>
         </article>
     </section>
 
-    <script type="module" src="/assets/js/LoginPage.js"></script>
+    <script type="module" src="/assets/js/components/AuthComponent.js"></script>
     <script type="module" src="/assets/js/components/HeaderComponent.js"></script>
+    <script type="module" src="/assets/js/LoginPage.js"></script>
 </body>
 </html>
