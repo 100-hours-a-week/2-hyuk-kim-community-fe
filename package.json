@@ -2,7 +2,7 @@
   "name": "community",
   "version": "0.0.1",
   "description": "community web fe",
-  "main": "assets/js/index.js",
+  "main": "assets/js/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

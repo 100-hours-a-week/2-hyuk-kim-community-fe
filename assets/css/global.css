@@ -8,17 +8,25 @@
  html {
      font-size: 62.5%;
      height: 100%;
-     width: 100%;
+     margin: 0;
  }
 
  body {
      font-size: 1.6rem;
+     height: 100%;
+ }
+
+ .container {
+     height: 100vh;           /* 전체 높이를 100vh로 설정 */
+     display: flex;           /* Flexbox 사용 */
+     justify-content: center;  /* 수평 중앙 정렬 */
+     align-items: center;      /* 수직 중앙 정렬 */
  }
 
  .wrap {
      display: flex;
      flex-direction: column;
-     align-items: center;
+     /*align-items: center;*/
  }
 
 .helper-text {
