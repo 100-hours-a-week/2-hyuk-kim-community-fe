@@ -1,5 +1,6 @@
 let isLoginPage = false;
 let fields = [];
+let cssFileName;
 
 class AuthComponent extends HTMLElement {
     constructor() {
@@ -24,6 +25,7 @@ class AuthComponent extends HTMLElement {
 
         return `
         <link rel="stylesheet" href="/assets/css/AuthComponent.css">
+        <link rel="stylesheet" href="/assets/css/${cssFileName}.css">
         <link rel="stylesheet" href="/assets/css/Common.css">
         <article id="article-auth">
             ${fieldsHTML}
@@ -55,12 +57,14 @@ function checkReferrer() {
     console.log("pageNow: " + pageNow);
     if (pageNow.includes('LoginPage')) {
         isLoginPage = true;
+        cssFileName = "LoginPage";
         fields = [
             { id: 'email', label: '이메일', type: 'email', placeholder: '이메일을 입력하세요' },
             { id: 'password', label: '비밀번호', type: 'password', placeholder: '비밀번호를 입력하세요' },
         ]
     } else {
         isLoginPage = false;
+        cssFileName = "SignUpPage";
         fields = [
             { id: 'email', label: '이메일*', type: 'email', placeholder: '이메일을 입력하세요' },
             { id: 'password', label: '비밀번호*', type: 'password', placeholder: '비밀번호를 입력하세요' },

@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loginButton.disabled = true;
     loginButton.addEventListener("click", (event) => {
-        window.location.href = "/html/Posts.html";
+        window.location.href = "Posts.html";
     })
 
     signupButton.addEventListener("click", (event) => {

@@ -9,8 +9,33 @@
 
 
 #logo {
+    width: 206px;
     font-size: 3.2rem;
     font-weight: 400;
     line-height: 32px;
     text-align: center;
+    margin-left: 133px;
+    margin-right: 133px;
+}
+
+#button-back {
+    width: 40px;
+    height: 40px;
+    background: url("../../community/assets/images/back.svg");
+}
+
+#button-profile {
+    width: 36px;
+    height: 36px;
+    background: url("../../community/assets/images/profile.webp");
+}
+
+
+#button-back, #button-profile {
+    border-width: 0;
+    background-size: cover; /* 이미지가 버튼 크기에 맞게 조정 */
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none; /* 버튼 테두리 제거 */
+    cursor: pointer;
 }

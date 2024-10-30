@@ -1,17 +1,9 @@
 .wrap {
     width: 355px;
     justify-content: center;
-    margin-bottom: var(--header-height);
+    margin-bottom: calc(var(--header-height));
 }
 
-#loginText {
-    font-size: 3.2rem;
-    font-weight: 700;
-    line-height: 3.8rem;
-    text-align: center;
-    margin-top: 0.9rem;
-    margin-bottom: 4.0rem;
-}
 
 #article-auth {
     width: 39.2rem;
@@ -25,11 +17,12 @@
     font-weight: 700;
     line-height: 1.79rem;
     text-align: left;
-    margin-top: 1.8rem;
-    margin-bottom: 0.9rem;
+    /*margin-top: 0.4rem;*/
 }
 
 .helper-text {
+    margin: 0;
+    margin-top: 0.4rem;
 }
 
 input {
@@ -47,15 +40,5 @@ input::placeholder {
     font-weight: 400;
     line-height: 1.6rem;
     text-align: left;
-}
-
-.button-purple {
-    margin-top: 0.2rem;
-}
-
-.button-text {
-    font-size: 1.4rem;
-    text-align: center;
-    margin-top: 1.2rem;
 }
 
