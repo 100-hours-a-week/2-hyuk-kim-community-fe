@@ -11,10 +11,62 @@
 <header-component></header-component>
 
 <section class="wrap">
-  <span class="text-main">안녕하세요,<br/> 아무 말 대잔치 <span class="text-main-bold">게시판</span> 입니다.</span>
-  <button class="button-purple">게시글 작성</button>
+
+<!--  여기는 상단 게시글 정보!!-->
+  <article id="article-post-info">
+    <p id="post-title">${field.title}</p>
+      <div class="post-metadata">
+<!--        <div class="author-info">-->
+          <img class="img-profile" src="/assets/images/profile.webp" alt="profile">
+          <p class="author-name">작성자</p>
+          <span class="date-post">${field.date}</span>
+<!--        </div>-->
+        <div class="area-button">
+          <button type="button" class="button-comment"> 수정 </button>
+          <button type="button" class="button-comment"> 삭제 </button>
+        </div>
+      </div>
+  </article>
+
+<!--  여기서부터 게시글!!-->
+  <div class="line"></div>
+  <article id="article-post-main">
+    <img class="img-post"sizes="" src="/assets/images/profile.webp" alt="profile">
+    <p class="content">무엇을 얘기할까요? 아무말이라면, 삶은 항상 놀라운 모험이라고 생각합니다. 우리는 매일 새로운 경험을 하고 배우며 성장합니다. 때로는 어려움과 도전이 있지만, 그것들이 우리를 더 강하고 지혜롭게 만듭니다. 또한 우리는 주변의 사람들과 연결되며 사랑과 지지를 받습니다. 그래서 우리의 삶은 소중하고 의미가 있습니다.
+      자연도 아름다운 이야기입니다. 우리 주변의 자연은 끝없는 아름다움과 신비로움을 담고 있습니다. 산, 바다, 숲, 하늘 등 모든 것이 우리를 놀라게 만들고 감동시킵니다. 자연은 우리의 생명과 안정을 지키며 우리에게 힘을 주는 곳입니다.
+      마지막으로, 지식을 향한 탐구는 항상 흥미로운 여정입니다. 우리는 끝없는 지식의 바다에서 배우고 발견할 수 있으며, 이것이 우리를 더 깊이 이해하고 세상을 더 넓게 보게 해줍니다.
+      그런 의미에서, 삶은 놀라움과 경이로움으로 가득 차 있습니다. 새로운 경험을 즐기고 항상 앞으로 나아가는 것이 중요하다고 생각합니다.</p>
+
+    <div class="box">
+      <div class="count-box">
+        <p id="count-like" class="count"> 123 </p>
+        <p class="count-text"> 좋아요수 </p>
+      </div>
+      <div id="box-center" class="count-box">
+        <p id="count-view" class="count"> 213 </p>
+        <p class="count-text"> 조회수 </p>
+      </div>
+      <div class="count-box">
+        <p id="count-comment" class="count"> 321 </p>
+        <p class="count-text"> 댓굴 </p>
+      </div>
+    </div>
+  </article>
+
+  <!--  여기서부터 댓글!!-->
+  <div class="line"></div>
+  <article id="article-comment">
+    <div class="form-comment">
+      <textarea class="textarea-comment"> 댓글을 남겨주세요! </textarea>
+      <div class="line"></div>
+      <button type="button" class="button-purple">완료</button>
+    </div>
+    <div class="list-comment">
+<!--      댓글들 리스트 js로 추가하기~ : 게시글 목록 페이지 참고-->
+    </div>
+  </article>
+
 </section>
-<posts-list-component></posts-list-component>
 <script type="module" src="/assets/js/components/HeaderComponent.js"></script>
 <script type="module" src="/assets/js/components/PostsListComponent.js"></script>
 </body>

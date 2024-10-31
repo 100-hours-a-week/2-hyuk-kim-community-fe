@@ -1,0 +1,140 @@
+.wrap {
+    width: 59.2rem;
+    flex-direction: column;
+    justify-content: center;
+    /*align-items: center;*/
+}
+
+.page-title {
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 3.12rem;
+    text-align: center;
+    margin-top: 2.4rem;
+    margin-bottom: 5.1rem;
+}
+
+.text-guide {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 2.08rem;
+    text-align: left;
+
+    margin-top: 2.6rem;
+    margin-left: 2.6rem;
+    margin-bottom: 1.6rem;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    opacity : 0.16;
+    background: #000000;
+}
+
+.title-form {
+
+}
+
+.content-form {
+
+}
+
+.input-title {
+    width: 52.2rem;
+    height: 6.4rem;
+    border-width: 0;
+    background-color: transparent;
+    padding-left: 2.4rem;
+    padding-right: 2.4rem;
+
+
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 2.256rem;
+    text-align: left;
+}
+
+.input-title::placeholder {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 2.256rem;
+    text-align: left;
+    /*margin-left: 2.4rem;*/
+}
+
+.input-content {
+    width: 52.2rem;
+    height: 22.8rem;
+    border-width: 0;
+    background-color: transparent;
+    padding: 2.4rem;
+
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 2.115rem;
+    text-align: left;
+}
+
+.input-content::placeholder {
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 2.115rem;
+    text-align: left;
+
+    /*padding-left: 2.4rem;*/
+    /*padding-right: 2.4rem;*/
+}
+
+.upload-image {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: fit-content;
+    align-items: center;
+    justify-content: start;
+
+}
+
+.button-upload-file {
+    width: 6.8rem;
+    height: 2.9rem;
+    border-radius: 4px;
+    border-width: 1px;
+    border-color: black;
+    background-color: #D9D9D9;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 1.2rem;
+    margin-left: 2.5rem;
+}
+
+.helper-text {
+    margin-bottom: 0;
+}
+
+.text-image {
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 1.671rem;
+    text-align: left;
+    margin-top: 1.15rem;
+    margin-bottom: 0.8rem;
+    margin-left: 2.4rem;
+}
+
+.helper-text {
+    visibility: visible;
+}
+
+
+.button-purple {
+    /*margin-top: 1.2rem;*/
+    /*margin-bottom: 1.2rem;*/
+    border-radius: 4px;
+    width: 35.5rem;
+    height: 3.3rem;
+
+    margin: 0 auto;
+}
