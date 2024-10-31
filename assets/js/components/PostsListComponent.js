@@ -1,3 +1,4 @@
+import updateNumberForm from "/community/assets/js/util/manageNumber.js";
 let fields = [];
 
 class PostsListComponent extends HTMLElement {
@@ -62,9 +63,9 @@ class PostsListComponent extends HTMLElement {
 
 function getPostList() {
     fields = [
-        { id: 0, title: '제목제목', like: 1, comment:2, view:3, date:'2021-01-01 00:00:00', author:'김상혁' },
-        { id: 1, title: '제제목목', like: 1, comment:2, view:3, date:'2031-01-01 00:00:00', author:'김상' },
-        { id: 2, title: '긴글긴글', like: 1, comment:2, view:3, date:'2041-01-01 00:00:00', author:'김' },
+        { id: 0, title: '제목제목', like: 11111111, comment:2, view:3, date:'2021-01-01 00:00:00', author:'김상혁' },
+        { id: 1, title: '제제목목', like: 1, comment:2111111111, view:3, date:'2031-01-01 00:00:00', author:'김상' },
+        { id: 2, title: '긴글긴글', like: 1, comment:2, view:3111111111, date:'2041-01-01 00:00:00', author:'김' },
         { id: 0, title: '제목제목', like: 1, comment:2, view:3, date:'2021-01-01 00:00:00', author:'김상혁' },
         { id: 1, title: '제제목목', like: 1, comment:2, view:3, date:'2031-01-01 00:00:00', author:'김상' },
         { id: 2, title: '긴글긴글', like: 1, comment:2, view:3, date:'2041-01-01 00:00:00', author:'김' },
@@ -72,6 +73,12 @@ function getPostList() {
         { id: 1, title: '제제목목', like: 1, comment:2, view:3, date:'2031-01-01 00:00:00', author:'김상' },
         { id: 2, title: '긴글긴글', like: 1, comment:2, view:3, date:'2041-01-01 00:00:00', author:'김' },
     ]
+
+    fields.forEach((field) => {
+        field.like = updateNumberForm(field.like);
+        field.comment = updateNumberForm(field.comment);
+        field.view = updateNumberForm(field.view);
+    })
 }
 
 window.customElements.define('post-list-component', PostsListComponent);

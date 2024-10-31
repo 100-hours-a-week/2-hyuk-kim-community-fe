@@ -139,8 +139,8 @@ function invisibleHelper(key) {
 }
 
 function activeLoginButton() {
-    const loginButton = document.querySelector("#login-button");
-    if (checkEmail && checkPassword) {
+    const loginButton = document.querySelector("#signup-button");
+    if (checkEmail && checkPassword && checkPasswordRe && checkNickname) {
         loginButton.style.backgroundColor = "#7F6AEE";
         loginButton.disabled = false;
     } else {

@@ -1,9 +1,11 @@
 let validateTitle = false;
 let validateContent = false;
+let helperText;
 
 document.addEventListener('DOMContentLoaded', () => {
     const inputTitle = document.querySelector(".input-title");
     const inputContent = document.querySelector(".input-content");
+    helperText = document.querySelector(".helper-text");
     const endButton = document.querySelector(".button-purple");
 
     endButton.addEventListener("click", (e) => {window.location.href="Posts.html"})
@@ -35,8 +37,10 @@ function updateEndButton(endButton) {
     if (validateTitle && validateContent) {
         endButton.style.backgroundColor = "#7F6AEE";
         endButton.disabled = false;
+        helperText.style.visibility = "hidden";
     } else {
         endButton.style.backgroundColor = "#ACA0EB";
         endButton.disabled = true;
+        helperText.style.visibility = "visible";
     }
 }

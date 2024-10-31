@@ -5,11 +5,12 @@
     width: 100vw;
     height: 104px;
     border-bottom: black solid 1px;
+    position: relative;
 }
 
 
 #logo {
-    width: 206px;
+    width: 20.6rem;
     font-size: 3.2rem;
     font-weight: 400;
     line-height: 32px;
@@ -19,15 +20,16 @@
 }
 
 #button-back {
-    width: 40px;
-    height: 40px;
+    width: 4rem;
+    height: 4rem;
     background: url("../../community/assets/images/back.svg");
 }
 
 #button-profile {
-    width: 36px;
-    height: 36px;
+    width: 3.6rem;
+    height: 3.6rem;
     background: url("../../community/assets/images/profile.webp");
+    position: relative;
 }
 
 
@@ -42,6 +44,8 @@
 
 #menu {
     position: absolute;
+    top: calc(100% - 8px); /* button-profile 바로 아래에 위치하되, 8px 위로 조정 */
+    left: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
