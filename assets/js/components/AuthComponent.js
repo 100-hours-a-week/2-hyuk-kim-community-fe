@@ -62,7 +62,7 @@ function checkReferrer() {
             { id: 'email', label: '이메일', type: 'email', placeholder: '이메일을 입력하세요' },
             { id: 'password', label: '비밀번호', type: 'password', placeholder: '비밀번호를 입력하세요' },
         ]
-    } else {
+    } else if(pageNow.includes('SignUpPage')) {
         isLoginPage = false;
         cssFileName = "SignUpPage";
         fields = [
@@ -70,6 +70,12 @@ function checkReferrer() {
             { id: 'password', label: '비밀번호*', type: 'password', placeholder: '비밀번호를 입력하세요' },
             { id: 'password-re', label: '비밀번호 확인*', type: 'password', placeholder: '비밀번호를 한번 더 입력하세요' },
             { id: 'nickname', label: '닉네임*', type: 'text', placeholder: '닉네임을 입력하세요' },
+        ];
+    } else {
+        cssFileName = "EditPasswordPage";
+        fields = [
+            { id: 'password', label: '비밀번호', type: 'password', placeholder: '비밀번호를 입력하세요' },
+            { id: 'password-re', label: '비밀번호 확인', type: 'password', placeholder: '비밀번호를 한번 더 입력하세요' },
         ];
     }
 }
