@@ -1,0 +1,111 @@
+.wrap {
+    width: 35.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+.page-title {
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: 3.819rem;
+    text-align: center;
+    margin-top: 16.1rem;
+    margin-bottom: 0;
+}
+
+.text-profile-img {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.79rem;
+    text-align: left;
+    margin-right: auto;
+    margin-top: 1.2rem;
+    margin-bottom: 0;
+}
+
+.form {
+    width: 35.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+
+.text-guide {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.79rem;
+    text-align: left;
+    margin: 0;
+}
+
+.text-email {
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 1.671rem;
+    text-align: left;
+    margin-top: 1.6rem;
+    margin-bottom: 1.6rem;
+}
+
+.input-nickname {
+    width: 34.1rem;
+    height: 3.3rem;
+    border-radius: 4px;
+    border-width: 0.1rem;
+    padding-left: 1rem;
+    margin-top: 0.8rem;
+    margin-bottom: 0;
+}
+
+.helper-text {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.452rem;
+    text-align: left;
+
+}
+
+#button-edit {
+    width: 35.5rem;
+    height: 3.3rem;
+    border-radius: 0.4rem;
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+}
+
+#signout-button {
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 1.671rem;
+    text-align: center;
+    margin: 0;
+}
+
+#button-end {
+    width:  10.2rem;
+    height: 4.6rem;
+    padding: 1.2rem 2rem 1.2rem 2rem;
+    border-radius: 3rem ;
+    margin-top: 7.7rem;
+    margin-bottom: 0;
+}
+
+
+.image-profile {
+    width: 14.9rem;
+    height: 14.9rem;
+
+    border-width: 0;
+    background-size: cover; /* 이미지가 버튼 크기에 맞게 조정 */
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none; /* 버튼 테두리 제거 */
+    cursor: pointer;
+
+    margin-top: 2.2rem;
+    margin-bottom: 3.6rem;
+}

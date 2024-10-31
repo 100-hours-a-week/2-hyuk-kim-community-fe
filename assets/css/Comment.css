@@ -1,0 +1,42 @@
+#article-comment {
+    width: 54.4rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.author-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.post-metadata {
+
+}
+
+.img-profile {
+    width: 3.6rem;
+    height: 3.6rem;
+
+    border-width: 0;
+    background-size: cover; /* 이미지가 버튼 크기에 맞게 조정 */
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none; /* 버튼 테두리 제거 */
+    cursor: pointer;
+}
+
+.area-button {
+    margin-left: auto;
+}
+
+.content {
+    margin-left: 4.6rem;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 2.115rem   ;
+    text-align: left;
+}

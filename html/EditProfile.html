@@ -3,39 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/MakePost.css">
+    <link rel="stylesheet" href="/assets/css/EditProfile.css">
     <link rel="stylesheet" href="/assets/css/Common.css">
-    <title>게시글 작성</title>
+    <title>회원정보 수정</title>
 </head>
 <body>
-<header-component></header-component>
+    <header-component></header-component>
 
-<section class=".wrap">
-    <p class="page-title">게시글 작성</p>
-    <article class="post-form">
-        <div class="title-form">
-            <p class="text-guide">제목*</p>
-            <div class="line"></div>
-            <input class="input-title" placeholder="제목을 입력해주세요. (최대 26글자)">
-            <div class="line"></div>
-        </div>
-        <div class="content-form">
-            <p class="text-guide">내용*</p>
-            <div class="line"></div>
-            <!--                <textarea name="opinion" cols="30" rows="5"></textarea>-->
-            <textarea class="input-content" placeholder="내용을 입력해주세요."></textarea>
-            <div class="line"></div>
-        </div>
-        <p class="helper-text">*제목, 내용을 모두 작성해주세요</p>
-        <p class="text-image">이미지</p>
-        <div class="upload-image">
-            <button class="button-upload-file" type="button">파일 선택</button>
-            <p class="text-filename">파일을 선택해주세요.</p>
-        </div>
-        <button type="button" class="button-purple">완료</button>
-    </article>
-</section>
+    <section class="wrap">
+        <p class="page-title">회원정보수정</p>
+        <p class="text-profile-img">프로필 사진*</p>
+        <img class="image-profile" src="/assets/images/profile.webp" alt="profile">
 
-<script type="module" src="/assets/js/components/HeaderComponent.js"></script>
+        <div class="form">
+            <p class="text-guide"> 이메일 </p>
+            <p class="text-email"> test@gmail.com </p>
+
+            <p class="text-guide"> 닉네임 </p>
+            <input class="input-nickname" placeholder="기존 닉네임">
+            <p class="helper-text"> *helper text </p>
+        </div>
+
+        <article>
+            <button id="button-edit" class="button-purple">수정하기</button>
+            <p id="signout-button" class="button-text">회원 탈퇴</p>
+        </article>
+
+        <button id="button-end" class="button-purple">수정 완료</button>
+    </section>
+
+    <script type="module" src="/assets/js/components/HeaderComponent.js"></script>
 </body>
 </html>

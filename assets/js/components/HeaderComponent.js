@@ -1,6 +1,6 @@
 let buttonBack;
 let buttonProfile;
-
+let menu;
 
 class HeaderComponent extends HTMLElement {
     constructor() {
@@ -13,13 +13,22 @@ class HeaderComponent extends HTMLElement {
         this.shadowRoot.innerHTML = this.template()
         buttonBack = this.shadowRoot.querySelector('#button-back');
         buttonProfile = this.shadowRoot.querySelector('#button-profile');
+        menu = this.shadowRoot.querySelector('#menu');
+        menu.style.visibility = 'hidden';
+
+        this.shadowRoot.querySelector('#menu-edit-profile').onclick = () => {window.location.href = "EditProfile.html";};
+        this.shadowRoot.querySelector('#menu-edit-password').onclick = () => {window.location.href = "EditPasswordPage.html";};
+        this.shadowRoot.querySelector('#menu-logout').onclick = () => {window.location.href = "LoginPage.html";};
+
+
         checkReferrer();
 
         buttonBack.onclick = () => {
             goBack();
         }
-        buttonProfile.onclick = () => {
-            window.location.href = "EditProfile.html";
+        buttonProfile.onclick = (event) => {
+            console.log("clicked profile image!!");
+            menu.style.visibility = menu.style.visibility === 'visible' ? 'hidden' : 'visible';
         }
     }
 
@@ -35,6 +44,11 @@ class HeaderComponent extends HTMLElement {
                 <button id="button-profile" type="button">
 <!--                    <img src="/assets/images/profile.webp" alt="profile"></img>-->
                 </button> 
+                <div id="menu">
+                    <p id="menu-edit-profile" class="menu" type="button">회원정보수정</p>
+                    <p id="menu-edit-password" class="menu" type="button">비밀번호수정</p>
+                    <p id="menu-logout" class="menu" type="button">로그아웃</p>
+                </div>
             </div>
         </header>
         `
