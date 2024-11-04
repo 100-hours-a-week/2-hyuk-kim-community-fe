@@ -1,3 +1,9 @@
+import {LOGIN_HEADER, LOGIN_URL} from "./api/constants.js";
+
+// as constants from "../js/api/constants";
+// import * as constants from './constants';
+import apiFetch from "../js/api/ApiFetch.js";
+
 let checkEmail = false;
 let checkPassword = false;
 let authComponent;
@@ -22,15 +28,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loginButton.disabled = true;
     loginButton.addEventListener("click", (event) => {
-        window.location.href = "Posts.html";
+        fetchLogin(emailInput.value, passwordInput.value).then((result) => {
+            console.log("login success!! : " + result);
+            if(result) window.location.href = "./../../html/Posts.html";
+            else console.log("login failed!!");
+        }).catch(console.error);
     })
 
     signupButton.addEventListener("click", (event) => {
-        window.location.href = "SignUpPage.html";
-    })
-
+        window.location.href = "/html/SignUpPage.html";
+    });
 
 });
+
+async function fetchLogin(email, password) {
+    const body = ({
+        email: email,
+        password: password,
+    });
+    console.log("Sending body:", body); // 로그 추가
+    // return await apiFetch(constants.LOGIN_URL, constants.LOGIN_HEADER, body);
+    return await apiFetch(LOGIN_URL, LOGIN_HEADER, body);
+}
+
 
 function validateEmail(email) {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;

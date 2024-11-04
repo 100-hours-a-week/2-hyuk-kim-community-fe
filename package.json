@@ -5,8 +5,12 @@
   "type": "module",
   "main": "html/LoginPage.html",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "hyuk.kim",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
 }

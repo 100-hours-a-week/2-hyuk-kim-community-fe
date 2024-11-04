@@ -22,13 +22,13 @@
 #button-back {
     width: 4rem;
     height: 4rem;
-    background: url("../../community/assets/images/back.svg");
+    background: url("../../assets/images/back.svg");
 }
 
 #button-profile {
     width: 3.6rem;
     height: 3.6rem;
-    background: url("../../community/assets/images/profile.webp");
+    background: url("../../assets/images/profile.webp");
     position: relative;
 }
 
