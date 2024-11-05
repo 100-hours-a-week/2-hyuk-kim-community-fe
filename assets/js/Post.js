@@ -1,6 +1,6 @@
 import updateNumberForm from "./util/manageNumber.js";
 import apiFetch from "./api/ApiFetch.js";
-import {GET_POST_HEADER, GET_POST_URL} from "./api/constants.js";
+import {GET_POST_HEADER, GET_POST_URL, DELETE_POST_URL, DELETE_POST_HEADER} from "./api/constants.js";
 import showToast from "./util/Toast.js";
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -30,33 +30,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     modal.addEventListener('modal-ok', () => {
         console.log("확인!!");
-        // 게시글 삭제
+        fetchDeletePost(postId);
         window.location.href = "Posts.html";
     });
 });
 
 async function fetchGetPost(id, document) {
     apiFetch(GET_POST_URL.replace(":postId", id), GET_POST_HEADER).then((result) => {
-        console.log("get post success!! : " + result);
         if(result) {
+            console.log("get post success!! : " + result);
             document.querySelector("#post-title").textContent = result["title"];
             document.querySelector(".author-name").textContent = result["nickname"];
             document.querySelector(".date-post").textContent = result["date"];
             document.querySelector(".content").textContent = result["content"];
             document.querySelector("#count-like").textContent = result["countLike"];
             document.querySelector("#count-view").textContent = result["countView"];
-            console.log(Object.keys(result["comment"]).length);
             document.querySelector("#count-comment").textContent = Object.keys(result["comment"]).length;
-            // fetchPatchViews(id);
         } else console.log("create post failed!!");
     }).catch(console.error);
 }
 
-async function fetchPatchViews(id) {
-    apiFetch(GET_POST_URL.replace(":postId", id), GET_POST_HEADER).then((result) => {
-        console.log("get post success!! : " + result);
+async function fetchDeletePost(id) {
+    apiFetch(DELETE_POST_URL.replace(":postId", id), DELETE_POST_HEADER).then((result) => {
         if(result) {
-
+            console.log("delete post success!! : " + result);
         } else console.log("create post failed!!");
     }).catch(console.error);
 }

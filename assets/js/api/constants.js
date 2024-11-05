@@ -21,8 +21,5 @@ export const CREATE_POST_URL = `${BASE_URL}/posts`;
 export const CREATE_POST_HEADER = `POST`;
 export const GET_POST_URL = `${BASE_URL}/posts/:postId`;
 export const GET_POST_HEADER = `GET`;
-
-export const constants = {
-    LOGIN_URL,
-    LOGIN_HEADER,
-};
+export const DELETE_POST_URL = `${BASE_URL}/posts/:postId`;
+export const DELETE_POST_HEADER = `DELETE`;
