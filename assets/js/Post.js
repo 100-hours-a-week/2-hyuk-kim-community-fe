@@ -1,4 +1,7 @@
-import updateNumberForm from "/community/assets/js/util/manageNumber.js";
+import updateNumberForm from "./util/manageNumber.js";
+import apiFetch from "./api/ApiFetch.js";
+import {GET_POST_HEADER, GET_POST_URL} from "./api/constants.js";
+import showToast from "./util/Toast.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 const postId = urlParams.get("id");
@@ -8,10 +11,11 @@ let countView;
 let countComment;
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("postId: " + postId);
+    console.log("post page!! : ", postId);
     const updateButton = document.querySelector('#button-update-post');
     const deleteButton = document.querySelector('#button-delete-post');
     manageNumber();
+    fetchGetPost(postId, document);
 
     const modal = document.querySelector('modal-component');
 
@@ -29,12 +33,33 @@ document.addEventListener('DOMContentLoaded', () => {
         // 게시글 삭제
         window.location.href = "Posts.html";
     });
-
-    modal.addEventListener('modal-cancel', () => {
-        console.log("취소!!");
-        // 취소 버튼 클릭 후 처리할 로직 추가
-    });
 });
+
+async function fetchGetPost(id, document) {
+    apiFetch(GET_POST_URL.replace(":postId", id), GET_POST_HEADER).then((result) => {
+        console.log("get post success!! : " + result);
+        if(result) {
+            document.querySelector("#post-title").textContent = result["title"];
+            document.querySelector(".author-name").textContent = result["nickname"];
+            document.querySelector(".date-post").textContent = result["date"];
+            document.querySelector(".content").textContent = result["content"];
+            document.querySelector("#count-like").textContent = result["countLike"];
+            document.querySelector("#count-view").textContent = result["countView"];
+            console.log(Object.keys(result["comment"]).length);
+            document.querySelector("#count-comment").textContent = Object.keys(result["comment"]).length;
+            // fetchPatchViews(id);
+        } else console.log("create post failed!!");
+    }).catch(console.error);
+}
+
+async function fetchPatchViews(id) {
+    apiFetch(GET_POST_URL.replace(":postId", id), GET_POST_HEADER).then((result) => {
+        console.log("get post success!! : " + result);
+        if(result) {
+
+        } else console.log("create post failed!!");
+    }).catch(console.error);
+}
 
 function showModal() {
     // document에서 모달 컴포넌트 선택하여 호출

@@ -1,4 +1,7 @@
-import updateNumberForm from "/community/assets/js/util/manageNumber.js";
+import updateNumberForm from "../util/manageNumber.js";
+import {LOGIN_HEADER, LOGIN_URL} from "../api/constants.js";
+import apiFetch from "../api/ApiFetch.js";
+
 let fields = [];
 
 class PostsListComponent extends HTMLElement {

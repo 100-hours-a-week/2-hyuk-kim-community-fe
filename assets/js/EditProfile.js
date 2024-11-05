@@ -1,8 +1,17 @@
-import showToast from "/community/assets/js/util/Toast.js";
+import {
+    UPDATE_NICKNAME_URL,
+    UPDATE_NICKNAME_HEADER,
+    GET_NICKNAME_HEADER,
+    GET_NICKNAME_URL,
+    DELETE_USER_HEADER, DELETE_USER_URL
+} from "./api/constants.js";
+import apiFetch from "../js/api/ApiFetch.js";
+import showToast from "../js/util/Toast.js";
 
 let checkNickname = false;
 
 document.addEventListener('DOMContentLoaded', () => {
+    const textEmail = document.querySelector('.text-email');
     const nicknameInput = document.querySelector('.input-nickname');
     const editButton = document.querySelector("#button-edit");
     const modal = document.querySelector('modal-component');
@@ -13,11 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
         activeLoginButton();
     });
 
+    fetchGetNickname(sessionStorage.getItem('email'), textEmail, nicknameInput);
 
     editButton.disabled = true;
-    editButton.addEventListener("click", (event) => {
-        // 토스트
-        showToast("수정 완료");
+    editButton.addEventListener("click", async (event) => {
+        await fetchUpdateNickname(sessionStorage.getItem('email'), nicknameInput.value);
     })
 
 
@@ -31,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.addEventListener('modal-ok', () => {
         console.log("확인!!");
         // 게시글 삭제
-        window.location.href = "LoginPage.html";
+        fetchDeleteUser(sessionStorage.getItem('email'));
     });
 
     modal.addEventListener('modal-cancel', () => {
@@ -40,6 +49,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
+async function fetchGetNickname(email, textEmail, nicknameInput) {
+    const url = GET_NICKNAME_URL.replace(':email', email);
+    apiFetch(url, GET_NICKNAME_HEADER).then((result) => {
+        console.log("get nickname success!! : " + result);
+        if(result) {
+            textEmail.textContent = email;
+            nicknameInput.value = result;
+        } else console.log("get nickname failed!!");
+    }).catch(console.error);
+}
+
+async function fetchUpdateNickname(email, nickname) {
+    const body = ({
+        email: email,
+        nickname: nickname,
+    });
+    apiFetch(UPDATE_NICKNAME_URL, UPDATE_NICKNAME_HEADER, body).then((result) => {
+        console.log("update nickname success!! : " + result);
+        if(result) {
+            showToast("수정 완료");
+        } else console.log("update nickname failed!!");
+    }).catch(console.error);
+}
+
+async function fetchDeleteUser(email) {
+    const body = ({
+        email: email,
+    });
+    apiFetch(DELETE_USER_URL, DELETE_USER_HEADER, body).then((result) => {
+        console.log("delete user success!! : " + result);
+        if(result) {
+            window.location.href = "LoginPage.html";
+        } else console.log("delete user failed!!");
+    }).catch(console.error);
+}
 
 function validateNickname(nickname) {
     const nicknameRegex = /^[^\s]{1,10}$/; // 1자 이상 10자 이하, 공백 없음

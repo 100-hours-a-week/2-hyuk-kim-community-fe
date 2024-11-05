@@ -18,7 +18,10 @@ class HeaderComponent extends HTMLElement {
 
         this.shadowRoot.querySelector('#menu-edit-profile').onclick = () => {window.location.href = "EditProfile.html";};
         this.shadowRoot.querySelector('#menu-edit-password').onclick = () => {window.location.href = "EditPasswordPage.html";};
-        this.shadowRoot.querySelector('#menu-logout').onclick = () => {window.location.href = "LoginPage.html";};
+        this.shadowRoot.querySelector('#menu-logout').onclick = () => {
+            sessionStorage.removeItem("email");
+            window.location.href = "LoginPage.html";
+        };
         checkReferrer();
 
         buttonBack.onclick = () => {
@@ -28,6 +31,7 @@ class HeaderComponent extends HTMLElement {
             console.log("clicked profile image!!");
             menu.style.visibility = menu.style.visibility === 'visible' ? 'hidden' : 'visible';
         }
+
     }
 
     template() {

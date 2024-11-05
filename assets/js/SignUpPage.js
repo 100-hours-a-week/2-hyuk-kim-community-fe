@@ -1,3 +1,6 @@
+import { SIGNUP_URL, SIGNUP_HEADER } from "./api/constants.js";
+import apiFetch from "../js/api/ApiFetch.js";
+
 let checkEmail = false;
 let checkPassword = false;
 let checkPasswordRe = false;
@@ -11,8 +14,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const passwordReInput = authComponent.getInput("password-re");
     const nickNameInput = authComponent.getInput("nickname");
 
-    const signupButton = document.querySelector("#login-button");
-    const loginButton = document.querySelector("#signup-button");
+    const signupButton = document.querySelector("#signup-button");
+    const loginButton = document.querySelector("#login-button");
+
+    signupButton.disabled = true;
+    signupButton.addEventListener("click", (event) => {
+        fetchSignUp(emailInput.value, passwordInput.value, nickNameInput.value).then((result) => {
+            console.log("signup success!! : " + result);
+            if(result) window.location.href = "./../../html/LoginPage.html";
+            else console.log("signup failed!!");
+        }).catch(console.error);
+        // window.location.href = "LoginPage.html";
+    })
+
+    loginButton.addEventListener("click", (event) => {
+        window.location.href = "LoginPage.html";
+    })
 
     emailInput.addEventListener("input", (event) => {
         validateEmail(event.target.value);
@@ -36,15 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
         activeLoginButton();
     });
 
-    signupButton.disabled = true;
-    signupButton.addEventListener("click", (event) => {
-        window.location.href = "LoginPage.html";
-    })
-
-    loginButton.addEventListener("click", (event) => {
-        window.location.href = "LoginPage.html";
-    })
-
 
 });
 
@@ -58,6 +66,17 @@ function validateEmail(email) {
         checkEmail = false;
     }
 
+}
+
+async function fetchSignUp(email, password, nickname) {
+    const body = ({
+        email: email,
+        password: password,
+        nickname: nickname,
+    });
+    console.log("Sending body:", body); // 로그 추가
+    // return await apiFetch(constants.LOGIN_URL, constants.LOGIN_HEADER, body);
+    return await apiFetch(SIGNUP_URL, SIGNUP_HEADER, body);
 }
 
 function validatePassword(password) {

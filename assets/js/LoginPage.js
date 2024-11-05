@@ -1,7 +1,4 @@
 import {LOGIN_HEADER, LOGIN_URL} from "./api/constants.js";
-
-// as constants from "../js/api/constants";
-// import * as constants from './constants';
 import apiFetch from "../js/api/ApiFetch.js";
 
 let checkEmail = false;
@@ -30,8 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
     loginButton.addEventListener("click", (event) => {
         fetchLogin(emailInput.value, passwordInput.value).then((result) => {
             console.log("login success!! : " + result);
-            if(result) window.location.href = "./../../html/Posts.html";
-            else console.log("login failed!!");
+            if(result) {
+                sessionStorage.setItem("email", emailInput.value);
+                window.location.href = "./../../html/Posts.html";
+            } else console.log("login failed!!");
         }).catch(console.error);
     })
 

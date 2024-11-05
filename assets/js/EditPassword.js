@@ -1,4 +1,6 @@
-import showToast from "/community/assets/js/util/Toast.js";
+import {UPDATE_PASSWORD_HEADER, UPDATE_PASSWORD_URL} from "./api/constants.js";
+import apiFetch from "../js/api/ApiFetch.js";
+import showToast from "../js/util/Toast.js";
 
 let checkPassword = false;
 let checkPasswordRe = false;
@@ -26,12 +28,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     editButton.disabled = true;
     editButton.addEventListener("click", (event) => {
-        // 토스트
-        showToast("수정 완료");
+        fetchUpdatePassword(sessionStorage.getItem("email"), passwordInput.value);
     })
 
 
 });
+
+async function fetchUpdatePassword(email, password) {
+    const body = ({
+        email: email,
+        password: password,
+    });
+    apiFetch(UPDATE_PASSWORD_URL, UPDATE_PASSWORD_HEADER, body).then((result) => {
+        console.log("update password success!! : " + result);
+        if(result) {
+            showToast("수정 완료");
+        } else console.log("update password failed!!");
+    }).catch(console.error);
+}
 
 
 function validatePassword(password) {
