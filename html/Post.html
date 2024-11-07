@@ -10,10 +10,10 @@
 </head>
 <body>
 <header-component></header-component>
-<modal-component></modal-component>
 
 <section class="wrap">
-
+<!--<div class="modal-overlay">-->
+<modal-component></modal-component>
 <!--  여기는 상단 게시글 정보!!-->
   <article id="article-post-info">
     <p id="post-title">${field.title}</p>
@@ -68,7 +68,7 @@
       <comment-component></comment-component>
     </div>
   </article>
-
+<!--</div>-->
 </section>
 <script type="module" src="/assets/js/components/HeaderComponent.js"></script>
 <script type="module" src="/assets/js/components/Comment.js"></script>

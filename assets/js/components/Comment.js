@@ -8,7 +8,8 @@ class Comment extends HTMLElement {
     }
 
     connectedCallback() {
-        getCommentList();
+        // getCommentList();
+        fields = window.commentData;
         this.shadowRoot.innerHTML = this.template(fields);
     }
 
@@ -35,22 +36,6 @@ class Comment extends HTMLElement {
         `).join('')}
         `
     };
-}
-
-function getCommentList() {
-    fields = [
-        { id: 0, authorId:'0', author:'김상혁', content: '내용내용', date:'2021-01-01 00:00:00'},
-        { id: 1, authorId:'0', author:'김상혁', content: '내용용', date:'2021-01-01 00:00:00'},
-        { id: 2, authorId:'0', author:'김상혁', content: '내내용', date:'2021-01-01 00:00:00'},
-        { id: 3, authorId:'0', author:'김상혁', content: '내용', date:'2021-01-01 00:00:00'},
-        { id: 4, authorId:'0', author:'김상혁', content: '용내', date:'2021-01-01 00:00:00'},
-    ]
-
-    // fields.forEach((field) => {
-    //     field.like = updateNumberForm(field.like);
-    //     field.comment = updateNumberForm(field.comment);
-    //     field.view = updateNumberForm(field.view);
-    // })
 }
 
 window.customElements.define('comment-component', Comment);
