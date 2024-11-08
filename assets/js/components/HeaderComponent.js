@@ -29,6 +29,15 @@ class HeaderComponent extends HTMLElement {
         }
         buttonProfile.onclick = (event) => {
             console.log("clicked profile image!!");
+            const profileRightX = buttonProfile.getBoundingClientRect().right;
+            const profileBottomY = buttonProfile.getBoundingClientRect().bottom;
+            const menuWidth = menu.offsetWidth;
+            const offset = 8;
+
+            menu.style.position = 'absolute';
+            menu.style.left = `${profileRightX - menuWidth}px`;
+            menu.style.top = `${profileBottomY + offset}px`;
+
             menu.style.visibility = menu.style.visibility === 'visible' ? 'hidden' : 'visible';
         }
 
