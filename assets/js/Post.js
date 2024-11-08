@@ -5,6 +5,7 @@ import showToast from "./util/Toast.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 const postId = urlParams.get("id");
+let backgroundModal;
 
 let countLike;
 let countView;
@@ -14,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("post page!! : ", postId);
     const updateButton = document.querySelector('#button-update-post');
     const deleteButton = document.querySelector('#button-delete-post');
+    backgroundModal = document.querySelector("#background-modal");
     manageNumber();
     fetchGetPost(postId, document);
 
@@ -30,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     modal.addEventListener('modal-cancel', () => {
         console.log("취소!!");
+        backgroundModal.style.visibility = "hidden";
         // const wrap = document.querySelector(" .modal-overlay");
         // wrap.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
     });
@@ -53,9 +56,6 @@ async function fetchGetPost(id, document) {
             document.querySelector("#count-view").textContent = result["countView"];
             document.querySelector("#count-comment").textContent = Object.keys(result["comment"]).length;
 
-            // console.log('result["comment"] : ', result["comment"]);
-            // window.commentData = result["comment"];
-
             window.commentData = result["comment"];
             window.postIdData = result["postId"];
             const commentEvent = new CustomEvent("loadComments", { detail: result["comment"] });
@@ -75,7 +75,7 @@ async function fetchDeletePost(id) {
 function showModal() {
     // document에서 모달 컴포넌트 선택하여 호출
     const modal = document.querySelector("modal-component");
-    // const wrap = document.querySelector(" .modal-overlay");
+    backgroundModal.style.visibility = "visible";
     // wrap.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
     console.log(modal);
     modal.showModal("게시글을 삭제하시겠습니까?", "삭제한 내용은 복구 할 수 없습니다.");

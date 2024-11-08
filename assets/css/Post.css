@@ -7,15 +7,6 @@
      z-index: 0;
  }
 
- #modal-overlay {
-     position: fixed;
-     z-index: 20;
-     width: 100vw;
-     height: 100vh;
-     background-color: rgba(0, 0, 0, 0.4);
-     float: left;
- }
-
  modal-component {
      z-index: 20; /* overlay보다 높은 값 */
      /* 모달 내용 스타일 */
@@ -170,4 +161,16 @@
     font-weight: 700;
     line-height: 2.504rem;
     text-align: center;
+}
+
+#background-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    /*display: none;*/
+    visibility: hidden;
+    z-index: 19;
 }

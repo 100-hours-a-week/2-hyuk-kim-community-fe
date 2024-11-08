@@ -4,6 +4,7 @@ import {
     UPDATE_COMMENT_URL, UPDATE_COMMENT_HEADER,
     CREATE_COMMENT_URL, CREATE_COMMENT_HEADER
 } from "../api/constants.js";
+import showToast from "../util/Toast.js";
 
 let fields = [];
 let updateCommentId = "";
@@ -57,6 +58,7 @@ class Comment extends HTMLElement {
                   <button type="button" id="button-comment-update" class="button-comment"> 수정 </button>
                   <button type="button" id="button-comment-delete" class="button-comment"> 삭제 </button>
                 </div>
+                <modal-component id="modal-comment-${key}"></modal-component> 
             </div>
           </div>
           </article>
@@ -66,10 +68,20 @@ class Comment extends HTMLElement {
     };
 
     renderPosts() {
-        // const postListContainer = document.getElementById("post-list-container");
-        // postListContainer.innerHTML = template(fields);
         const textAreaComment = this.shadowRoot.querySelector(".textarea-comment");
         const buttonCreate = this.shadowRoot.querySelector("#create-button");
+        buttonCreate.style.backgroundColor = "#ACA0EB";
+        buttonCreate.disabled = true;
+
+        textAreaComment.addEventListener("input", (event) => {
+            if (textAreaComment.value.length > 0){
+                buttonCreate.style.backgroundColor = "#7F6AEE";
+                buttonCreate.disabled = false;
+            } else {
+                buttonCreate.style.backgroundColor = "#ACA0EB";
+                buttonCreate.disabled = true;
+            }
+        })
 
         buttonCreate.addEventListener("click", (event) => {
             if (updateCommentId === "") {
@@ -81,6 +93,7 @@ class Comment extends HTMLElement {
                 updateCommentId = "";
                 buttonCreate.textContent = "댓글 등록";
             }
+            this.renderPosts();
             textAreaComment.value = "";
         })
 
@@ -92,7 +105,8 @@ class Comment extends HTMLElement {
 
             const commentId = comment.getAttribute("data-id");
             const commentEmail = comment.querySelector("#email-date").getAttribute("data-email");
-
+            const modalId = '#modal-comment-' + commentId;
+            const modal = this.shadowRoot.querySelector(modalId);
             if(commentEmail !== sessionStorage.getItem("email")) {
                 buttonArea.style.visibility = 'hidden';
                 return;
@@ -103,12 +117,21 @@ class Comment extends HTMLElement {
                 textAreaComment.textContent = comment.querySelector(".content").textContent;
                 updateCommentId = commentId;
                 buttonCreate.textContent = "댓글 수정";
-                // fetchUpdateComment(commentId, textAreaComment.textContent, sessionStorage.getItem("email"));
             });
 
             buttonDelete.addEventListener("click", function () {
-                // 팝업!
+                console.log("delete post popup!!");
+                showModal(modal);
+            });
+
+            modal.addEventListener('modal-cancel', () => {
+                console.log("취소!!");
+            });
+
+            modal.addEventListener('modal-ok', () => {
+                console.log("확인!!");
                 fetchDeleteComment(commentId);
+
             });
         });
     }
@@ -123,7 +146,8 @@ async function fetchCreateComment(content, email) {
     apiFetch(CREATE_COMMENT_URL, CREATE_COMMENT_HEADER, body).then((result) => {
         console.log("create comment success!! : " + result);
         if(result) {
-            // showToast("생성 완료");
+            window.location.reload();
+            showToast("생성 완료");
         } else console.log("create comment failed!!");
     }).catch(console.error);
 }
@@ -136,8 +160,8 @@ async function fetchUpdateComment(id, content, email) {
     apiFetch(UPDATE_COMMENT_URL.replace(":commentId", id), UPDATE_COMMENT_HEADER, body).then((result) => {
         console.log("create post success!! : " + result);
         if(result) {
-            // showToast("생성 완료");
-
+            showToast("생성 완료");
+            window.location.reload();
         } else console.log("create post failed!!");
     }).catch(console.error);
 }
@@ -145,9 +169,14 @@ async function fetchUpdateComment(id, content, email) {
 function fetchDeleteComment(id) {
     apiFetch(DELETE_COMMENT_URL.replace(":commentId", id), DELETE_COMMENT_HEADER).then((result) => {
         if(result) {
-            console.log("delete comment success!! : " + result);
+            showToast("삭제 완료");
+            window.location.reload();
         } else console.log("create comment failed!!");
     }).catch(console.error);
+}
+
+function showModal(modal) {
+    modal.showModal("댓글을 삭제하시겠습니까?", "삭제한 내용은 복구 할 수 없습니다.");
 }
 
 window.customElements.define('comment-component', Comment);
