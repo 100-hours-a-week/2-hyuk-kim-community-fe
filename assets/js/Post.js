@@ -53,7 +53,13 @@ async function fetchGetPost(id, document) {
             document.querySelector("#count-view").textContent = result["countView"];
             document.querySelector("#count-comment").textContent = Object.keys(result["comment"]).length;
 
+            // console.log('result["comment"] : ', result["comment"]);
+            // window.commentData = result["comment"];
+
             window.commentData = result["comment"];
+            window.postIdData = result["postId"];
+            const commentEvent = new CustomEvent("loadComments", { detail: result["comment"] });
+            document.querySelector("comment-component").dispatchEvent(commentEvent);
         } else console.log("create post failed!!");
     }).catch(console.error);
 }

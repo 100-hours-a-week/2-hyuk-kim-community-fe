@@ -26,7 +26,13 @@ export const PATCH_POST_URL = `${BASE_URL}/posts/:postId`;
 export const PATCH_POST_HEADER = `PATCH`;
 export const GET_POST_LIST_URL = `${BASE_URL}/posts`;
 export const GET_POST_LIST_HEADER = `GET`;
-export const GET_POST_COMMENT_URL = `${BASE_URL}/posts/:postId/comment`;
-export const GET_POST_COMMENT_HEADER = `GET`;
 export const DELETE_POST_URL = `${BASE_URL}/posts/:postId`;
 export const DELETE_POST_HEADER = `DELETE`;
+
+//comment
+export const CREATE_COMMENT_URL = `${BASE_URL}/comments`;
+export const CREATE_COMMENT_HEADER = `POST`;
+export const UPDATE_COMMENT_URL = `${BASE_URL}/comments/:commentId`;
+export const UPDATE_COMMENT_HEADER = `PUT`;
+export const DELETE_COMMENT_URL = `${BASE_URL}/comments/:commentId`;
+export const DELETE_COMMENT_HEADER = `DELETE`;
