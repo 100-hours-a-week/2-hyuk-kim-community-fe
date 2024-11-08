@@ -23,7 +23,8 @@
     height: fit-content;
 }
 
-.text-main, .text-main-bold {
+.text-main,
+.text-main-bold {
     font-size: 2.4rem;
     line-height: 3.12rem;
     text-align: center;
@@ -48,7 +49,6 @@
     margin-bottom: 0.8rem;
 }
 
-
 .button-purple {
     border-radius: 1.6rem;
     width: 13.8rem;
@@ -58,7 +58,7 @@
     margin-left: auto;
 }
 .button-purple:hover {
-    background-color:#7F6AEE;
+    background-color: #7f6aee;
 }
 
 .button-text {
@@ -66,4 +66,3 @@
     text-align: center;
     margin: 0;
 }
-

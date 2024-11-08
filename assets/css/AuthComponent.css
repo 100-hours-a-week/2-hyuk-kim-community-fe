@@ -4,7 +4,6 @@
     margin-bottom: calc(var(--header-height));
 }
 
-
 #article-auth {
     width: 39.2rem;
     /*height: 18.8rem;*/
@@ -41,4 +40,3 @@ input::placeholder {
     line-height: 1.6rem;
     text-align: left;
 }
-

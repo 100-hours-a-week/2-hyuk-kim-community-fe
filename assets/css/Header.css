@@ -8,7 +8,6 @@
     position: relative;
 }
 
-
 #logo {
     width: 20.6rem;
     font-size: 3.2rem;
@@ -22,18 +21,18 @@
 #button-back {
     width: 4rem;
     height: 4rem;
-    background: url("../../assets/images/back.svg");
+    background: url('../../assets/images/back.svg');
 }
 
 #button-profile {
     width: 3.6rem;
     height: 3.6rem;
-    background: url("../../assets/images/profile.webp");
+    background: url('../../assets/images/profile.webp');
     position: relative;
 }
 
-
-#button-back, #button-profile {
+#button-back,
+#button-profile {
     border-width: 0;
     background-size: cover; /* 이미지가 버튼 크기에 맞게 조정 */
     background-position: center;
@@ -44,7 +43,9 @@
 
 #menu {
     position: absolute;
-    top: calc(100% - 8px); /* button-profile 바로 아래에 위치하되, 8px 위로 조정 */
+    top: calc(
+        100% - 8px
+    ); /* button-profile 바로 아래에 위치하되, 8px 위로 조정 */
     left: 50%;
     display: flex;
     flex-direction: column;
@@ -64,7 +65,7 @@
     font-weight: 400;
     line-height: 1.452rem;
 
-    background: #D9D9D9;
+    background: #d9d9d9;
 
     margin: 0;
 }

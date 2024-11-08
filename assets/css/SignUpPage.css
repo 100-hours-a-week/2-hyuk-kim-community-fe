@@ -32,8 +32,8 @@
     margin-bottom: 2.7rem;
 }
 
-
-#profile-text, #profile-helper-text {
+#profile-text,
+#profile-helper-text {
     width: 100%;
     visibility: visible;
     text-align: start;
@@ -47,7 +47,7 @@
     width: 149px;
     height: 149px;
     border-radius: 50%;
-    background-color: #C4C4C4;
+    background-color: #c4c4c4;
     border: 0;
 }
 
@@ -82,4 +82,3 @@ input::placeholder {
     text-align: center;
     margin: 0;
 }
-

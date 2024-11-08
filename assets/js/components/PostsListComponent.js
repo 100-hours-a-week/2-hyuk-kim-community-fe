@@ -1,17 +1,14 @@
-import updateNumberForm from "../util/manageNumber.js";
-import {
-    GET_POST_LIST_HEADER,
-    GET_POST_LIST_URL,
-} from "../api/constants.js";
-import apiFetch from "../api/ApiFetch.js";
+import updateNumberForm from '../util/manageNumber.js';
+import { GET_POST_LIST_HEADER, GET_POST_LIST_URL } from '../api/constants.js';
+import apiFetch from '../api/ApiFetch.js';
 
 let fields = [];
 
 class PostsListComponent extends HTMLElement {
     constructor() {
-        super()
-        console.log("PostsListComponent connected!!");
-        this.attachShadow({mode: 'open'})
+        super();
+        console.log('PostsListComponent connected!!');
+        this.attachShadow({ mode: 'open' });
     }
 
     async connectedCallback() {
@@ -26,8 +23,9 @@ class PostsListComponent extends HTMLElement {
         <link rel="stylesheet" type="text/css" href="/assets/css/PostsListComponent.css">
         <div id="post-list">
   
-        ${Object.keys(fields).map((key) => {
-            return `
+        ${Object.keys(fields)
+            .map(key => {
+                return `
             <section id="post-preview" data-id="${key}">
                 <article id="post-info-article">
                     <p id="post-title">${fields[key].title}</p>
@@ -46,44 +44,54 @@ class PostsListComponent extends HTMLElement {
                     <p class="author-name">${fields[key].nickname}</p>    
                 </div>
             </section>
-            `
-        }).join('')}
+            `;
+            })
+            .join('')}
         </div>
-        `
+        `;
     }
 
     renderPosts(fields) {
         // const postListContainer = document.getElementById("post-list-container");
         // postListContainer.innerHTML = template(fields);
-        console.log("add event!! ; " + this.shadowRoot.querySelectorAll("#post-preview").length);
+        console.log(
+            'add event!! ; ' +
+                this.shadowRoot.querySelectorAll('#post-preview').length,
+        );
         // 각 post-preview 섹션에 클릭 이벤트 추가
-        this.shadowRoot.querySelectorAll("#post-preview").forEach((post) => {
-            post.addEventListener("click", function () {
-                const postId = post.getAttribute("data-id");
-                console.log("clicked post! : " + postId);
+        this.shadowRoot.querySelectorAll('#post-preview').forEach(post => {
+            post.addEventListener('click', function () {
+                const postId = post.getAttribute('data-id');
+                console.log('clicked post! : ' + postId);
                 window.location.href = `Post.html?id=${postId}`;
             });
         });
     }
-
 }
 
-
 async function getPostList() {
-    fields = await apiFetch(GET_POST_LIST_URL, GET_POST_LIST_HEADER).then((result) => {
-        console.log("get post success!! : " + JSON.stringify(result));
-        if(result) {
-            Object.keys(result).forEach((key) => {
-                result[key].countLike = updateNumberForm(result[key].countLike);
-                result[key].countComment = updateNumberForm(Object.keys(result[key].comment).length);
-                result[key].countView = updateNumberForm(result[key].countView);
-            })
+    fields = await apiFetch(GET_POST_LIST_URL, GET_POST_LIST_HEADER)
+        .then(result => {
+            console.log('get post success!! : ' + JSON.stringify(result));
+            if (result) {
+                Object.keys(result).forEach(key => {
+                    result[key].countLike = updateNumberForm(
+                        result[key].countLike,
+                    );
+                    result[key].countComment = updateNumberForm(
+                        Object.keys(result[key].comment).length,
+                    );
+                    result[key].countView = updateNumberForm(
+                        result[key].countView,
+                    );
+                });
 
-            return(result);
-        } else console.log("create post failed!!");
-    }).catch(console.error);
+                return result;
+            } else console.log('create post failed!!');
+        })
+        .catch(console.error);
 
-    console.log("fields.length fetch : " + JSON.stringify(fields));
+    console.log('fields.length fetch : ' + JSON.stringify(fields));
     // fields = [
     //     { id: 0, title: '제목제목', like: 11111111, comment:2, view:3, date:'2021-01-01 00:00:00', author:'김상혁' },
     //     { id: 1, title: '제제목목', like: 1, comment:2111111111, view:3, date:'2031-01-01 00:00:00', author:'김상' },
@@ -98,8 +106,7 @@ async function getPostList() {
 }
 
 async function fetchGetPostList() {
-    console.log("")
-
+    console.log('');
 }
 
 window.customElements.define('post-list-component', PostsListComponent);

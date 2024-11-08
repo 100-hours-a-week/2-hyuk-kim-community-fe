@@ -2,34 +2,34 @@
     --header-height: 104px; /* 헤더의 기본 높이 */
 }
 
- html {
-     font-size: 62.5%;
-     height: 100vh;
-     width: 100vw;
-     margin: 0;
-     padding: 0;
-     box-sizing: border-box;
-     background-color: #F4F5F7;
- }
+html {
+    font-size: 62.5%;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f5f7;
+}
 
- body {
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     font-size: 1.6rem;
-     height: 100%;
-     width: 100%;
-     margin: 0;
- }
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.6rem;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
 
- .wrap {
-     display: flex;
-     flex-direction: column;
-     height: 100%;
- }
+.wrap {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
 
 .helper-text {
-    color: #FF0000;
+    color: #ff0000;
     font-size: 1.2rem;
     font-weight: 400;
     text-align: left;
@@ -38,10 +38,9 @@
 }
 
 .button-purple {
-    background: #ACA0EB;
+    background: #aca0eb;
     text-align: center;
-    color: #FFFFFF;
+    color: #ffffff;
     font-weight: bold;
     border: none;
 }
-

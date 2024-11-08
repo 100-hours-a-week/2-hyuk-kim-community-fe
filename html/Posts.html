@@ -1,26 +1,36 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/Posts.css">
-    <link rel="stylesheet" href="/assets/css/Common.css">
-    <title>게시글 목록</title>
-</head>
-<body>
-    <header-component></header-component>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/assets/css/Posts.css" />
+        <link rel="stylesheet" href="/assets/css/Common.css" />
+        <title>게시글 목록</title>
+    </head>
+    <body>
+        <header-component></header-component>
 
-    <section class="wrap">
-        <article id="top">
-            <span class="text-main">안녕하세요,<br/> 아무 말 대잔치 <span class="text-main-bold">게시판</span> 입니다.</span>
-            <button class="button-purple">게시글 작성</button>
-        </article>
-        <article id="post-list">
-            <post-list-component></post-list-component>
-        </article>
-    </section>
-    <script type="module" src="/assets/js/components/HeaderComponent.js"></script>
-    <script type="module" src="/assets/js/components/PostsListComponent.js"></script>
-    <script type="module" src="/assets/js/Posts.js"></script>
-</body>
+        <section class="wrap">
+            <article id="top">
+                <span class="text-main"
+                    >안녕하세요,<br />
+                    아무 말 대잔치
+                    <span class="text-main-bold">게시판</span> 입니다.</span
+                >
+                <button class="button-purple">게시글 작성</button>
+            </article>
+            <article id="post-list">
+                <post-list-component></post-list-component>
+            </article>
+        </section>
+        <script
+            type="module"
+            src="/assets/js/components/HeaderComponent.js"
+        ></script>
+        <script
+            type="module"
+            src="/assets/js/components/PostsListComponent.js"
+        ></script>
+        <script type="module" src="/assets/js/Posts.js"></script>
+    </body>
 </html>

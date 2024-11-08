@@ -1,40 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/EditProfile.css">
-    <link rel="stylesheet" href="/assets/css/Common.css">
-    <title>회원정보 수정</title>
-</head>
-<body>
-    <header-component></header-component>
-    <modal-component></modal-component>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/assets/css/EditProfile.css" />
+        <link rel="stylesheet" href="/assets/css/Common.css" />
+        <title>회원정보 수정</title>
+    </head>
+    <body>
+        <header-component></header-component>
+        <modal-component></modal-component>
 
-    <section class="wrap">
-        <p class="page-title">회원정보수정</p>
-        <p class="text-profile-img">프로필 사진*</p>
-        <img class="image-profile" src="/assets/images/profile.webp" alt="profile">
+        <section class="wrap">
+            <p class="page-title">회원정보수정</p>
+            <p class="text-profile-img">프로필 사진*</p>
+            <img
+                class="image-profile"
+                src="/assets/images/profile.webp"
+                alt="profile"
+            />
 
-        <div class="form">
-            <p class="text-guide"> 이메일 </p>
-            <p class="text-email"> test@gmail.com </p>
+            <div class="form">
+                <p class="text-guide">이메일</p>
+                <p class="text-email">test@gmail.com</p>
 
-            <p class="text-guide"> 닉네임 </p>
-            <input class="input-nickname" placeholder="닉네임">
-            <p class="helper-text"> *helper text </p>
-        </div>
+                <p class="text-guide">닉네임</p>
+                <input class="input-nickname" placeholder="닉네임" />
+                <p class="helper-text">*helper text</p>
+            </div>
 
-        <article>
-            <button id="button-edit" class="button-purple">수정하기</button>
-            <p id="signout-button" class="button-text">회원 탈퇴</p>
-        </article>
+            <article>
+                <button id="button-edit" class="button-purple">수정하기</button>
+                <p id="signout-button" class="button-text">회원 탈퇴</p>
+            </article>
 
-        <button id="button-end" class="button-purple">수정 완료</button>
-    </section>
+            <button id="button-end" class="button-purple">수정 완료</button>
+        </section>
 
-    <script type="module" src="/assets/js/components/HeaderComponent.js"></script>
-    <script type="module" src="/assets/js/components/Modal.js"></script>
-    <script type="module" src="/assets/js/EditProfile.js"></script>
-</body>
+        <script
+            type="module"
+            src="/assets/js/components/HeaderComponent.js"
+        ></script>
+        <script type="module" src="/assets/js/components/Modal.js"></script>
+        <script type="module" src="/assets/js/EditProfile.js"></script>
+    </body>
 </html>

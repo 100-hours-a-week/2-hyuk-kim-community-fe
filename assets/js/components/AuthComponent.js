@@ -4,9 +4,9 @@ let cssFileName;
 
 class AuthComponent extends HTMLElement {
     constructor() {
-        super()
-        console.log("HeaderComponent connected!!");
-        this.attachShadow({mode: 'open'})
+        super();
+        console.log('HeaderComponent connected!!');
+        this.attachShadow({ mode: 'open' });
     }
 
     connectedCallback() {
@@ -15,13 +15,15 @@ class AuthComponent extends HTMLElement {
     }
 
     template() {
-        const fieldsHTML = fields.map(field => {
-            return `
+        const fieldsHTML = fields
+            .map(field => {
+                return `
             <p id="${field.id}-text" class="text-guide"> ${field.label} </p>
             <input id="${field.id}-input" type="${field.type}" class="input-userinfo" placeholder="${field.placeholder}">
             <p id="${field.id}-helper-text" class="helper-text"> *helper text </p>
         `;
-        }).join('');
+            })
+            .join('');
 
         return `
         <link rel="stylesheet" href="/assets/css/AuthComponent.css">
@@ -49,35 +51,72 @@ class AuthComponent extends HTMLElement {
     }
 }
 
-
-
-
 function checkReferrer() {
     const pageNow = window.location.pathname;
-    console.log("pageNow: " + pageNow);
-    if(pageNow.includes('SignUpPage')) {
+    console.log('pageNow: ' + pageNow);
+    if (pageNow.includes('SignUpPage')) {
         isLoginPage = false;
-        cssFileName = "SignUpPage";
+        cssFileName = 'SignUpPage';
         fields = [
-            { id: 'email', label: '이메일*', type: 'email', placeholder: '이메일을 입력하세요' },
-            { id: 'password', label: '비밀번호*', type: 'password', placeholder: '비밀번호를 입력하세요' },
-            { id: 'password-re', label: '비밀번호 확인*', type: 'password', placeholder: '비밀번호를 한번 더 입력하세요' },
-            { id: 'nickname', label: '닉네임*', type: 'text', placeholder: '닉네임을 입력하세요' },
+            {
+                id: 'email',
+                label: '이메일*',
+                type: 'email',
+                placeholder: '이메일을 입력하세요',
+            },
+            {
+                id: 'password',
+                label: '비밀번호*',
+                type: 'password',
+                placeholder: '비밀번호를 입력하세요',
+            },
+            {
+                id: 'password-re',
+                label: '비밀번호 확인*',
+                type: 'password',
+                placeholder: '비밀번호를 한번 더 입력하세요',
+            },
+            {
+                id: 'nickname',
+                label: '닉네임*',
+                type: 'text',
+                placeholder: '닉네임을 입력하세요',
+            },
         ];
-    } else if(pageNow.includes('EditPasswordPage')) {
-        cssFileName = "EditPasswordPage";
+    } else if (pageNow.includes('EditPasswordPage')) {
+        cssFileName = 'EditPasswordPage';
         fields = [
-            { id: 'password', label: '비밀번호', type: 'password', placeholder: '비밀번호를 입력하세요' },
-            { id: 'password-re', label: '비밀번호 확인', type: 'password', placeholder: '비밀번호를 한번 더 입력하세요' },
+            {
+                id: 'password',
+                label: '비밀번호',
+                type: 'password',
+                placeholder: '비밀번호를 입력하세요',
+            },
+            {
+                id: 'password-re',
+                label: '비밀번호 확인',
+                type: 'password',
+                placeholder: '비밀번호를 한번 더 입력하세요',
+            },
         ];
     } else {
-    // if (pageNow.includes('LoginPage')) {
+        // if (pageNow.includes('LoginPage')) {
         isLoginPage = true;
-        cssFileName = "LoginPage";
+        cssFileName = 'LoginPage';
         fields = [
-            { id: 'email', label: '이메일', type: 'email', placeholder: '이메일을 입력하세요' },
-            { id: 'password', label: '비밀번호', type: 'password', placeholder: '비밀번호를 입력하세요' },
-        ]
+            {
+                id: 'email',
+                label: '이메일',
+                type: 'email',
+                placeholder: '이메일을 입력하세요',
+            },
+            {
+                id: 'password',
+                label: '비밀번호',
+                type: 'password',
+                placeholder: '비밀번호를 입력하세요',
+            },
+        ];
     }
 }
 

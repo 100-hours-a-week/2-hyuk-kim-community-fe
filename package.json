@@ -6,13 +6,23 @@
   "main": "html/LoginPage.html",
   "scripts": {
     "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write ."
   },
   "author": "hyuk.kim",
   "license": "ISC",
   "dependencies": {
+    "@eslint/eslintrc": "^3.1.0",
+    "eslint-config-airbnb": "^19.0.4",
     "express": "^4.21.1",
     "open": "^10.1.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "prettier": "^3.3.3"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1"
   }
 }

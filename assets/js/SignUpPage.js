@@ -1,5 +1,5 @@
-import { SIGNUP_URL, SIGNUP_HEADER } from "./api/constants.js";
-import apiFetch from "../js/api/ApiFetch.js";
+import { SIGNUP_URL, SIGNUP_HEADER } from './api/constants.js';
+import apiFetch from '../js/api/ApiFetch.js';
 
 let checkEmail = false;
 let checkPassword = false;
@@ -9,99 +9,103 @@ let authComponent;
 
 document.addEventListener('DOMContentLoaded', () => {
     authComponent = document.querySelector('auth-component');
-    const emailInput = authComponent.getInput("email");
-    const passwordInput = authComponent.getInput("password");
-    const passwordReInput = authComponent.getInput("password-re");
-    const nickNameInput = authComponent.getInput("nickname");
+    const emailInput = authComponent.getInput('email');
+    const passwordInput = authComponent.getInput('password');
+    const passwordReInput = authComponent.getInput('password-re');
+    const nickNameInput = authComponent.getInput('nickname');
 
-    const signupButton = document.querySelector("#signup-button");
-    const loginButton = document.querySelector("#login-button");
+    const signupButton = document.querySelector('#signup-button');
+    const loginButton = document.querySelector('#login-button');
 
     signupButton.disabled = true;
-    signupButton.addEventListener("click", (event) => {
-        fetchSignUp(emailInput.value, passwordInput.value, nickNameInput.value).then((result) => {
-            console.log("signup success!! : " + result);
-            if(result) window.location.href = "./../../html/LoginPage.html";
-            else console.log("signup failed!!");
-        }).catch(console.error);
+    signupButton.addEventListener('click', event => {
+        fetchSignUp(emailInput.value, passwordInput.value, nickNameInput.value)
+            .then(result => {
+                console.log('signup success!! : ' + result);
+                if (result)
+                    window.location.href = './../../html/LoginPage.html';
+                else console.log('signup failed!!');
+            })
+            .catch(console.error);
         // window.location.href = "LoginPage.html";
-    })
+    });
 
-    loginButton.addEventListener("click", (event) => {
-        window.location.href = "LoginPage.html";
-    })
+    loginButton.addEventListener('click', event => {
+        window.location.href = 'LoginPage.html';
+    });
 
-    emailInput.addEventListener("input", (event) => {
+    emailInput.addEventListener('input', event => {
         validateEmail(event.target.value);
         activeLoginButton();
     });
 
-    passwordInput.addEventListener("input", (event) => {
+    passwordInput.addEventListener('input', event => {
         validatePassword(event.target.value);
         validatePasswordRe(passwordReInput.value, event.target.value);
         activeLoginButton();
     });
 
-    passwordReInput.addEventListener("input", (event) => {
+    passwordReInput.addEventListener('input', event => {
         // validatePassword(event.target.value);
         validatePasswordRe(event.target.value, passwordInput.value);
         activeLoginButton();
     });
 
-    nickNameInput.addEventListener("input", (event) => {
+    nickNameInput.addEventListener('input', event => {
         validateNickname(event.target.value);
         activeLoginButton();
     });
-
-
 });
 
 function validateEmail(email) {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (emailRegex.test(email)) {
-        invisibleHelper("email");
+        invisibleHelper('email');
         checkEmail = true;
     } else {
-        visibleHelper("email", "*올바른 이메일 주소 형식을 입력해주세요 (예: \nexample@example.com)");
+        visibleHelper(
+            'email',
+            '*올바른 이메일 주소 형식을 입력해주세요 (예: \nexample@example.com)',
+        );
         checkEmail = false;
     }
-
 }
 
 async function fetchSignUp(email, password, nickname) {
-    const body = ({
+    const body = {
         email: email,
         password: password,
         nickname: nickname,
-    });
-    console.log("Sending body:", body); // 로그 추가
+    };
+    console.log('Sending body:', body); // 로그 추가
     // return await apiFetch(constants.LOGIN_URL, constants.LOGIN_HEADER, body);
     return await apiFetch(SIGNUP_URL, SIGNUP_HEADER, body);
 }
 
 function validatePassword(password) {
-    const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+[\]{};':"\\|,.<>/?~-]).{8,20}$/;
+    const passwordRegex =
+        /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+[\]{};':"\\|,.<>/?~-]).{8,20}$/;
     if (password.length === 0) {
-        visibleHelper("password","*비밀번호를 입력해주세요");
+        visibleHelper('password', '*비밀번호를 입력해주세요');
         checkPassword = false;
     } else if (passwordRegex.test(password)) {
-        invisibleHelper("password");
+        invisibleHelper('password');
         checkPassword = true;
     } else {
-        visibleHelper("password","*비밀번호가 다릅니다.");
+        visibleHelper('password', '*비밀번호가 다릅니다.');
         checkPassword = false;
     }
 }
 
 function validatePasswordRe(passwordRe, password) {
     if (passwordRe.length === 0) {
-        visibleHelper("password-re","*비밀번호를 한번더 입력해주세요");
+        visibleHelper('password-re', '*비밀번호를 한번더 입력해주세요');
         checkPasswordRe = false;
     } else if (passwordRe === password) {
-        invisibleHelper("password-re");
+        invisibleHelper('password-re');
         checkPasswordRe = true;
     } else {
-        visibleHelper("password-re","*비밀번호가 다릅니다.");
+        visibleHelper('password-re', '*비밀번호가 다릅니다.');
         checkPasswordRe = false;
     }
 }
@@ -111,21 +115,21 @@ function validateNickname(nickname) {
 
     // 닉네임 입력 여부 검사
     if (nickname.length === 0) {
-        visibleHelper("nickname", "*닉네임을 입력해주세요.");
+        visibleHelper('nickname', '*닉네임을 입력해주세요.');
         checkNickname = false;
         return;
     }
 
     // 닉네임 길이 검사
     if (nickname.length > 10) {
-        visibleHelper("nickname", "*닉네임은 최대 10자 까지 작성 가능합니다.");
+        visibleHelper('nickname', '*닉네임은 최대 10자 까지 작성 가능합니다.');
         checkNickname = false;
         return;
     }
 
     // 공백 검사
     if (!nicknameRegex.test(nickname)) {
-        visibleHelper("nickname", "*띄어쓰기를 없애주세요.");
+        visibleHelper('nickname', '*띄어쓰기를 없애주세요.');
         checkNickname = false;
         return;
     }
@@ -138,7 +142,7 @@ function validateNickname(nickname) {
     // }
 
     // 모든 검증을 통과한 경우
-    invisibleHelper("nickname");
+    invisibleHelper('nickname');
     checkNickname = true;
 }
 
@@ -147,27 +151,23 @@ function visibleHelper(key, text) {
     // const helperTextElement = authComponent.getPasswordHelperText;
     const helperTextElement = authComponent.getHelperText(key);
     helperTextElement.textContent = text;
-    helperTextElement.style.visibility = "visible";
+    helperTextElement.style.visibility = 'visible';
 }
 
 function invisibleHelper(key) {
-    console.log("valid success!!")
+    console.log('valid success!!');
     // const helperTextElement = document.querySelector(".helper-text");
     const helperTextElement = authComponent.getHelperText(key);
-    helperTextElement.style.visibility = "hidden";
+    helperTextElement.style.visibility = 'hidden';
 }
 
 function activeLoginButton() {
-    const loginButton = document.querySelector("#signup-button");
+    const loginButton = document.querySelector('#signup-button');
     if (checkEmail && checkPassword && checkPasswordRe && checkNickname) {
-        loginButton.style.backgroundColor = "#7F6AEE";
+        loginButton.style.backgroundColor = '#7F6AEE';
         loginButton.disabled = false;
     } else {
-        loginButton.style.backgroundColor = "#ACA0EB";
+        loginButton.style.backgroundColor = '#ACA0EB';
         loginButton.disabled = true;
     }
 }
-
-
-
-
