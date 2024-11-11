@@ -15,5 +15,5 @@ app.get('/LoginPage.html', function (req, res) {
 
 app.listen(3000, async () => {
     console.log('App is running on port 3000');
-    // await open(`http://localhost:${PORT}/html/LoginPage.html`);
+    await open(`http://localhost:${PORT}/html/LoginPage.html`);
 });
