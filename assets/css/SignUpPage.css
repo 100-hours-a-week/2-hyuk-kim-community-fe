@@ -1,7 +1,8 @@
 .wrap {
-    width: 355px;
+    width: 35.5rem;
+    height: fit-content;
     justify-content: center;
-    /*margin-bottom: var(--header-height);*/
+    margin-bottom: var(--header-height);
 }
 
 #loginText {

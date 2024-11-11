@@ -20,14 +20,19 @@ document.addEventListener('DOMContentLoaded', () => {
     signupButton.disabled = true;
     signupButton.addEventListener('click', event => {
         fetchSignUp(emailInput.value, passwordInput.value, nickNameInput.value)
-            .then(result => {
-                console.log('signup success!! : ' + result);
-                if (result)
+            .then(response => {
+                console.log('signup success!! : ' + response.body);
+                if (response.status >= 200 && response.status < 300) {}
                     window.location.href = './../../html/LoginPage.html';
-                else console.log('signup failed!!');
             })
-            .catch(console.error);
-        // window.location.href = "LoginPage.html";
+            .catch(error => {
+                if (error.status === 409) {
+                    console.log("중복된 닉네임!!");
+                    visibleHelper('email', '*중복된 이메일입니다.');
+                } else {
+                    console.error("Unexpected error:", error);
+                }
+            });
     });
 
     loginButton.addEventListener('click', event => {
@@ -57,6 +62,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+async function fetchSignUp(email, password, nickname) {
+    const body = {
+        email: email,
+        password: password,
+        nickname: nickname,
+    };
+    return apiFetch(SIGNUP_URL, SIGNUP_HEADER, body);
+}
+
 function validateEmail(email) {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (emailRegex.test(email)) {
@@ -69,17 +83,6 @@ function validateEmail(email) {
         );
         checkEmail = false;
     }
-}
-
-async function fetchSignUp(email, password, nickname) {
-    const body = {
-        email: email,
-        password: password,
-        nickname: nickname,
-    };
-    console.log('Sending body:', body); // 로그 추가
-    // return await apiFetch(constants.LOGIN_URL, constants.LOGIN_HEADER, body);
-    return await apiFetch(SIGNUP_URL, SIGNUP_HEADER, body);
 }
 
 function validatePassword(password) {

@@ -15,18 +15,18 @@ export default async function apiFetch(endpoint, method, body = null) {
         options.body = JSON.stringify(body);
     }
 
-    try {
+    // try {
         const response = await fetch(endpoint, options);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return await response.json();
-    } catch (error) {
-        console.error('Fetch error:', error);
-        throw error; // 오류를 호출하는 함수로 전달
+    if (!(response.status >= 200 && response.status < 300)) {
+        // 상태 코드를 포함한 에러 객체를 생성
+        const error = new Error(`HTTP error! status: ${response.status}`);
+        error.status = response.status; // 상태 코드 추가
+        throw error;
     }
+        return await response.json();
+    // }
+    // catch (error) {
+    //     // console.error('Fetch error:', error);
+    //     throw error; // 오류를 호출하는 함수로 전달
+    // }
 }
-
-// export const apiFetch= {
-//     apiFetch,
-// };

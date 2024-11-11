@@ -138,7 +138,7 @@ class Comment extends HTMLElement {
 
                 buttonUpdate.addEventListener('click', function () {
                     const commentId = comment.getAttribute('data-id');
-                    textAreaComment.textContent =
+                    textAreaComment.value =
                         comment.querySelector('.content').textContent;
                     updateCommentId = commentId;
                     buttonCreate.textContent = '댓글 수정';
