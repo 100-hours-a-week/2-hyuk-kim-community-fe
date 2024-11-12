@@ -53,7 +53,7 @@ class AuthComponent extends HTMLElement {
 
 function checkReferrer() {
     const pageNow = window.location.pathname;
-    console.log('pageNow: ' + pageNow);
+    console.log(`pageNow: ${pageNow}`);
     if (pageNow.includes('SignUpPage')) {
         isLoginPage = false;
         cssFileName = 'SignUpPage';

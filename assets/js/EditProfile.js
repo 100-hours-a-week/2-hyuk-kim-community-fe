@@ -17,16 +17,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const editButton = document.querySelector('#button-edit');
     const modal = document.querySelector('modal-component');
     const deleteButton = document.querySelector('#signout-button');
+    fetchGetNickname(sessionStorage.getItem('email'), textEmail, nicknameInput);
 
-    nicknameInput.addEventListener('input', event => {
+    nicknameInput.addEventListener('input', event => { // 화살표 함수로 변경
         validateNickname(event.target.value);
         activeLoginButton();
     });
 
-    fetchGetNickname(sessionStorage.getItem('email'), textEmail, nicknameInput);
-
-    editButton.disabled = true;
-    editButton.addEventListener('click', async event => {
+    editButton.addEventListener('click', async () => { // 화살표 함수로 변경
         await fetchUpdateNickname(
             sessionStorage.getItem('email'),
             nicknameInput.value,
@@ -41,13 +39,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     modal.addEventListener('modal-ok', () => {
         console.log('확인!!');
-        // 게시글 삭제
         fetchDeleteUser(sessionStorage.getItem('email'));
     });
 
     modal.addEventListener('modal-cancel', () => {
         console.log('취소!!');
-        // 취소 버튼 클릭 후 처리할 로직 추가
     });
 });
 
@@ -55,7 +51,7 @@ async function fetchGetNickname(email, textEmail, nicknameInput) {
     const url = GET_NICKNAME_URL.replace(':email', email);
     apiFetch(url, GET_NICKNAME_HEADER)
         .then(result => {
-            console.log('get nickname success!! : ' + result);
+            console.log(`get nickname success!! : ${result}`);
             if (result) {
                 textEmail.textContent = email;
                 nicknameInput.value = result;
@@ -71,7 +67,7 @@ async function fetchUpdateNickname(email, nickname) {
     };
     apiFetch(UPDATE_NICKNAME_URL, UPDATE_NICKNAME_HEADER, body)
         .then(result => {
-            console.log('update nickname success!! : ' + result);
+            console.log(`update nickname success!! : ${result}`);
             if (result) {
                 showToast('수정 완료');
             } else console.log('update nickname failed!!');
@@ -85,7 +81,7 @@ async function fetchDeleteUser(email) {
     };
     apiFetch(DELETE_USER_URL, DELETE_USER_HEADER, body)
         .then(result => {
-            console.log('delete user success!! : ' + result);
+            console.log(`delete nickname success!! : ${result}`);
             if (result) {
                 window.location.href = 'LoginPage.html';
             } else console.log('delete user failed!!');

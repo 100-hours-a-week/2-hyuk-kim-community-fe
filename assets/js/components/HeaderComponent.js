@@ -91,8 +91,8 @@ function checkReferrer() {
     }
 }
 
-function goBack() {
+const goBack = () => {
     window.history.go(-1);
-}
+};
 window.customElements.define('header-component', HeaderComponent);
 // export default headerComponent;
