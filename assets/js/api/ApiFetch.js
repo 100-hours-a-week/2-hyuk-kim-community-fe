@@ -1,4 +1,3 @@
-
 export default async function apiFetch(endpoint, method, body = null) {
     const options = {
         method: method,
@@ -17,5 +16,5 @@ export default async function apiFetch(endpoint, method, body = null) {
         error.response = await response.json();
         throw error;
     }
-    return await response.json() || "";
+    return (await response.json()) || '';
 }

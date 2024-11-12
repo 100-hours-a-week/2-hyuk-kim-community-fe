@@ -32,8 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.location.href = './../../html/Posts.html';
             })
             .catch(error => {
-                if(error.status === 400) showToast(error.response.message);
-        });
+                if (error.status === 400) showToast(error.response.message);
+            });
     });
 
     signupButton.addEventListener('click', event => {
