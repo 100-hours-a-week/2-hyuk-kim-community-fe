@@ -1,5 +1,6 @@
 import { LOGIN_HEADER, LOGIN_URL } from './api/constants.js';
 import apiFetch from '../js/api/ApiFetch.js';
+import showToast from '../js/util/Toast.js';
 
 let checkEmail = false;
 let checkPassword = false;
@@ -27,13 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
     loginButton.addEventListener('click', event => {
         fetchLogin(emailInput.value, passwordInput.value)
             .then(result => {
-                console.log('login success!! : ' + result);
-                if (result) {
-                    sessionStorage.setItem('email', emailInput.value);
-                    window.location.href = './../../html/Posts.html';
-                } else console.log('login failed!!');
+                sessionStorage.setItem('email', emailInput.value);
+                window.location.href = './../../html/Posts.html';
             })
-            .catch(console.error);
+            .catch(error => {
+                if(error.status === 400) showToast(error.response.message);
+        });
     });
 
     signupButton.addEventListener('click', event => {
@@ -47,8 +47,7 @@ async function fetchLogin(email, password) {
         password: password,
     };
     console.log('Sending body:', body); // 로그 추가
-    // return await apiFetch(constants.LOGIN_URL, constants.LOGIN_HEADER, body);
-    return await apiFetch(LOGIN_URL, LOGIN_HEADER, body);
+    return apiFetch(LOGIN_URL, LOGIN_HEADER, body);
 }
 
 function validateEmail(email) {
@@ -80,17 +79,12 @@ function validatePassword(password) {
 }
 
 function visibleHelper(text) {
-    // const helperTextElement = document.querySelector(".helper-text");
-    // const helperTextElement = authComponent.getPasswordHelperText;
     const helperTextElement = authComponent.getHelperText('password');
     helperTextElement.textContent = text;
     helperTextElement.style.visibility = 'visible';
 }
 
 function invisibleHelper() {
-    console.log('valid success!!');
-    // const helperTextElement = document.querySelector(".helper-text");
-    // const helperTextElement = authComponent.getPasswordHelperText;
     const helperTextElement = authComponent.getHelperText('password');
     helperTextElement.style.visibility = 'hidden';
 }

@@ -1,7 +1,4 @@
-import {
-    UPDATE_PASSWORD_HEADER,
-    UPDATE_PASSWORD_URL,
-} from './api/constants.js';
+import {UPDATE_PASSWORD_HEADER, UPDATE_PASSWORD_URL} from './api/constants.js';
 import apiFetch from '../js/api/ApiFetch.js';
 import showToast from '../js/util/Toast.js';
 

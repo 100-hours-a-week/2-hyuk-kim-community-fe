@@ -21,14 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
     signupButton.addEventListener('click', event => {
         fetchSignUp(emailInput.value, passwordInput.value, nickNameInput.value)
             .then(response => {
-                console.log('signup success!! : ' + response.body);
-                if (response.status >= 200 && response.status < 300) {
-                }
+                console.log('signup success!!');
                 window.location.href = './../../html/LoginPage.html';
             })
             .catch(error => {
                 if (error.status === 409) {
-                    console.log('중복된 닉네임!!');
                     visibleHelper('email', '*중복된 이메일입니다.');
                 } else {
                     console.error('Unexpected error:', error);
