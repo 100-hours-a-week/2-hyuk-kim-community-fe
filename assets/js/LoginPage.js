@@ -26,8 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loginButton.addEventListener('click', async () => { // 화살표 함수로 변경
         try {
-            await fetchLogin(emailInput.value, passwordInput.value);
+            const response = await fetchLogin(emailInput.value, passwordInput.value);
             sessionStorage.setItem('email', emailInput.value);
+            sessionStorage.setItem('sessionId', response.data.sessionId);
             window.location.href = './../../html/Posts.html';
         } catch (error) {
             if (error.status === 400) showToast(error.response.message);
