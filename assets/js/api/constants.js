@@ -1,5 +1,10 @@
 const BASE_URL = 'http://localhost:3001/api';
 
+/*
+URL HEADER 두개로 나누는 게 아닌 login 변수 내에 url, method 두개로 나누는 게 더 좋을듯.
+-> 현재 프로젝트에서 하지 말고 리액트로 재구성하면서 변경할 예정!
+ */
+
 //user
 export const LOGIN_URL = `${BASE_URL}/auth/login`;
 export const LOGIN_HEADER = `POST`;

@@ -49,14 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function fetchCreatePost(email, title, content) {
-    const body = {
-        email: email,
-        title: title,
-        content: content,
-    };
+    const body = { email, title, content };
     apiFetch(CREATE_POST_URL, CREATE_POST_HEADER, body)
         .then(result => {
-            console.log('create post success!! : ' + result);
+            console.log(`create post success!! : ${result}`);
             if (result) {
                 showToast('생성 완료');
                 const url = `./../../html/Post.html?id=${result}`;

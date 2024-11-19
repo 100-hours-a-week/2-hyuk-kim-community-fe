@@ -78,14 +78,9 @@ class Comment extends HTMLElement {
         buttonCreate.style.backgroundColor = '#ACA0EB';
         buttonCreate.disabled = true;
 
-        textAreaComment.addEventListener('input', event => {
-            if (textAreaComment.value.length > 0) {
-                buttonCreate.style.backgroundColor = '#7F6AEE';
-                buttonCreate.disabled = false;
-            } else {
-                buttonCreate.style.backgroundColor = '#ACA0EB';
-                buttonCreate.disabled = true;
-            }
+        textAreaComment.addEventListener('input', () => {
+            buttonCreate.style.backgroundColor = textAreaComment.value.length > 0 ? '#7F6AEE' : '#ACA0EB';
+            buttonCreate.disabled = textAreaComment.value.length === 0;
         });
 
         buttonCreate.addEventListener('click', event => {
@@ -162,54 +157,47 @@ class Comment extends HTMLElement {
 }
 
 async function fetchCreateComment(content, email) {
-    const body = {
-        postId: postId,
-        content: content,
-        email: email,
-    };
-    apiFetch(CREATE_COMMENT_URL, CREATE_COMMENT_HEADER, body)
-        .then(result => {
-            console.log('create comment success!! : ' + result);
-            if (result) {
-                window.location.reload();
-                showToast('생성 완료');
-            } else console.log('create comment failed!!');
-        })
-        .catch(console.error);
+    const body = { postId, content, email };
+    try {
+        const result = await apiFetch(CREATE_COMMENT_URL, CREATE_COMMENT_HEADER, body);
+        if (result) {
+            window.location.reload();
+            showToast('생성 완료');
+        } else {
+            console.log('create comment failed!!');
+        }
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 async function fetchUpdateComment(id, content, email) {
-    const body = {
-        email: email,
-        content: content,
-    };
-    apiFetch(
-        UPDATE_COMMENT_URL.replace(':commentId', id),
-        UPDATE_COMMENT_HEADER,
-        body,
-    )
-        .then(result => {
-            console.log('create post success!! : ' + result);
-            if (result) {
-                showToast('생성 완료');
-                window.location.reload();
-            } else console.log('create post failed!!');
-        })
-        .catch(console.error);
+    const body = { email, content };
+    try {
+        const result = await apiFetch(UPDATE_COMMENT_URL.replace(':commentId', id), UPDATE_COMMENT_HEADER, body);
+        if (result) {
+            showToast('생성 완료');
+            window.location.reload();
+        } else {
+            console.log('create post failed!!');
+        }
+    } catch (error) {
+        console.error(error);
+    }
 }
 
-function fetchDeleteComment(id) {
-    apiFetch(
-        DELETE_COMMENT_URL.replace(':commentId', id),
-        DELETE_COMMENT_HEADER,
-    )
-        .then(result => {
-            if (result) {
-                showToast('삭제 완료');
-                window.location.reload();
-            } else console.log('create comment failed!!');
-        })
-        .catch(console.error);
+async function fetchDeleteComment(id) {
+    try {
+        const result = await apiFetch(DELETE_COMMENT_URL.replace(':commentId', id), DELETE_COMMENT_HEADER);
+        if (result) {
+            showToast('삭제 완료');
+            window.location.reload();
+        } else {
+            console.log('create comment failed!!');
+        }
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 function showModal(modal) {

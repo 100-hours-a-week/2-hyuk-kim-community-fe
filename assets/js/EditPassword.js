@@ -38,13 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function fetchUpdatePassword(email, password) {
-    const body = {
-        email: email,
-        password: password,
-    };
+    const body = { email, password };
     apiFetch(UPDATE_PASSWORD_URL, UPDATE_PASSWORD_HEADER, body)
         .then(result => {
-            console.log('update password success!! : ' + result);
+            console.log(`update password success!! : ${result}`);
             if (result) {
                 showToast('수정 완료');
             } else console.log('update password failed!!');

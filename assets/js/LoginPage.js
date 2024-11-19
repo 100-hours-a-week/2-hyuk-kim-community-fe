@@ -1,5 +1,6 @@
 import { LOGIN_HEADER, LOGIN_URL } from './api/constants.js';
 import apiFetch from '../js/api/ApiFetch.js';
+import showToast from '../js/util/Toast.js';
 
 let checkEmail = false;
 let checkPassword = false;
@@ -23,32 +24,26 @@ document.addEventListener('DOMContentLoaded', () => {
         activeLoginButton();
     });
 
-    loginButton.disabled = true;
-    loginButton.addEventListener('click', event => {
-        fetchLogin(emailInput.value, passwordInput.value)
-            .then(result => {
-                console.log('login success!! : ' + result);
-                if (result) {
-                    sessionStorage.setItem('email', emailInput.value);
-                    window.location.href = './../../html/Posts.html';
-                } else console.log('login failed!!');
-            })
-            .catch(console.error);
+    loginButton.addEventListener('click', async () => { // 화살표 함수로 변경
+        try {
+            const response = await fetchLogin(emailInput.value, passwordInput.value);
+            sessionStorage.setItem('email', emailInput.value);
+            sessionStorage.setItem('sessionId', response.data.sessionId);
+            window.location.href = './../../html/Posts.html';
+        } catch (error) {
+            if (error.status === 400) showToast(error.response.message);
+        }
     });
 
-    signupButton.addEventListener('click', event => {
+    signupButton.addEventListener('click', () => { // 화살표 함수로 변경
         window.location.href = '/html/SignUpPage.html';
     });
 });
 
 async function fetchLogin(email, password) {
-    const body = {
-        email: email,
-        password: password,
-    };
-    console.log('Sending body:', body); // 로그 추가
-    // return await apiFetch(constants.LOGIN_URL, constants.LOGIN_HEADER, body);
-    return await apiFetch(LOGIN_URL, LOGIN_HEADER, body);
+    const body = { email, password }; // 비구조화 할당
+    console.log(`Sending body: ${body}`); // 템플릿 리터럴로 변경
+    return apiFetch(LOGIN_URL, LOGIN_HEADER, body);
 }
 
 function validateEmail(email) {
@@ -57,9 +52,7 @@ function validateEmail(email) {
         invisibleHelper();
         checkEmail = true;
     } else {
-        visibleHelper(
-            '*올바른 이메일 주소 형식을 입력해주세요 (예: \nexample@example.com)',
-        );
+        visibleHelper('*올바른 이메일 주소 형식을 입력해주세요 (예: \nexample@example.com)',);
         checkEmail = false;
     }
 }
@@ -80,17 +73,12 @@ function validatePassword(password) {
 }
 
 function visibleHelper(text) {
-    // const helperTextElement = document.querySelector(".helper-text");
-    // const helperTextElement = authComponent.getPasswordHelperText;
     const helperTextElement = authComponent.getHelperText('password');
     helperTextElement.textContent = text;
     helperTextElement.style.visibility = 'visible';
 }
 
 function invisibleHelper() {
-    console.log('valid success!!');
-    // const helperTextElement = document.querySelector(".helper-text");
-    // const helperTextElement = authComponent.getPasswordHelperText;
     const helperTextElement = authComponent.getHelperText('password');
     helperTextElement.style.visibility = 'hidden';
 }

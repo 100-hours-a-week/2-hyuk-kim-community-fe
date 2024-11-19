@@ -55,14 +55,11 @@ async function fetchGetPostEdit() {
 }
 
 async function fetchUpdatePost(title, content) {
-    const body = {
-        title: title,
-        content: content,
-    };
+    const body = { title, content };
     apiFetch(PATCH_POST_URL.replace(':postId', postId), PATCH_POST_HEADER, body)
         .then(result => {
             if (result) {
-                console.log('patch post success!! : ' + result);
+                console.log(`patch post success!! : ${result}`);
             } else console.log('patch post failed!!');
         })
         .catch(console.error);

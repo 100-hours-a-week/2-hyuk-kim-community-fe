@@ -16,7 +16,7 @@ let countView;
 let countComment;
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('post page!! : ', postId);
+    console.log(`post page!! :  ${postId}`);
     const updateButton = document.querySelector('#button-update-post');
     const deleteButton = document.querySelector('#button-delete-post');
     backgroundModal = document.querySelector('#background-modal');
@@ -49,22 +49,15 @@ document.addEventListener('DOMContentLoaded', () => {
 async function fetchGetPost(id, document) {
     apiFetch(GET_POST_URL.replace(':postId', id), GET_POST_HEADER)
         .then(result => {
-            console.log('get post success!! : ' + result);
+            console.log(`get post success!! : ${result}`);
             if (result) {
-                document.querySelector('#post-title').textContent =
-                    result['title'];
-                document.querySelector('.author-name').textContent =
-                    result['nickname'];
-                document.querySelector('.date-post').textContent =
-                    result['date'];
-                document.querySelector('.content').textContent =
-                    result['content'];
-                document.querySelector('#count-like').textContent =
-                    result['countLike'];
-                document.querySelector('#count-view').textContent =
-                    result['countView'];
-                document.querySelector('#count-comment').textContent =
-                    Object.keys(result['comment']).length;
+                document.querySelector('#post-title').textContent = result['title'];
+                document.querySelector('.author-name').textContent = result['nickname'];
+                document.querySelector('.date-post').textContent = result['date'];
+                document.querySelector('.content').textContent = result['content'];
+                document.querySelector('#count-like').textContent = result['countLike'];
+                document.querySelector('#count-view').textContent = result['countView'];
+                document.querySelector('#count-comment').textContent = Object.keys(result['comment']).length;
 
                 window.commentData = result['comment'];
                 window.postIdData = result['postId'];
@@ -83,7 +76,7 @@ async function fetchDeletePost(id) {
     apiFetch(DELETE_POST_URL.replace(':postId', id), DELETE_POST_HEADER)
         .then(result => {
             if (result) {
-                console.log('delete post success!! : ' + result);
+                console.log(`delete post success!! : ${result}`);
             } else console.log('create post failed!!');
         })
         .catch(console.error);
@@ -95,10 +88,7 @@ function showModal() {
     backgroundModal.style.visibility = 'visible';
     // wrap.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
     console.log(modal);
-    modal.showModal(
-        '게시글을 삭제하시겠습니까?',
-        '삭제한 내용은 복구 할 수 없습니다.',
-    );
+    modal.showModal( '게시글을 삭제하시겠습니까?', '삭제한 내용은 복구 할 수 없습니다.' );
 }
 
 function manageNumber() {

@@ -60,7 +60,7 @@ class PostsListComponent extends HTMLElement {
         );
         // 각 post-preview 섹션에 클릭 이벤트 추가
         this.shadowRoot.querySelectorAll('#post-preview').forEach(post => {
-            post.addEventListener('click', function () {
+            post.addEventListener('click', () => {
                 const postId = post.getAttribute('data-id');
                 console.log('clicked post! : ' + postId);
                 window.location.href = `Post.html?id=${postId}`;
