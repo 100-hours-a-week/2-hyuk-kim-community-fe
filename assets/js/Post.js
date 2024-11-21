@@ -55,8 +55,8 @@ async function fetchGetPost(id, document) {
                 document.querySelector('.author-name').textContent = result['nickname'];
                 document.querySelector('.date-post').textContent = result['date'];
                 document.querySelector('.content').textContent = result['content'];
-                document.querySelector('#count-like').textContent = result['countLike'];
-                document.querySelector('#count-view').textContent = result['countView'];
+                document.querySelector('#count-like').textContent = result['count_like'];
+                document.querySelector('#count-view').textContent = result['count_view'];
                 document.querySelector('#count-comment').textContent = Object.keys(result['comment']).length;
 
                 window.commentData = result['comment'];

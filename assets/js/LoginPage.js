@@ -24,25 +24,29 @@ document.addEventListener('DOMContentLoaded', () => {
         activeLoginButton();
     });
 
-    loginButton.addEventListener('click', async () => { // 화살표 함수로 변경
+    loginButton.addEventListener('click', async () => {
         try {
             const response = await fetchLogin(emailInput.value, passwordInput.value);
-            sessionStorage.setItem('email', emailInput.value);
-            sessionStorage.setItem('sessionId', response.data.sessionId);
+            console.log(`response 1 : ${JSON.stringify(response)}`);
+            console.log(`response 2 : ${response.data}`);
+            sessionStorage.setItem('userId', response.userId);
+            console.log(`response 2 : ${response.data}`);
+            sessionStorage.setItem('sessionId', response.sessionId);
+            console.log(`response 2 : ${response.data}`);
             window.location.href = './../../html/Posts.html';
         } catch (error) {
             if (error.status === 400) showToast(error.response.message);
         }
     });
 
-    signupButton.addEventListener('click', () => { // 화살표 함수로 변경
+    signupButton.addEventListener('click', () => {
         window.location.href = '/html/SignUpPage.html';
     });
 });
 
 async function fetchLogin(email, password) {
-    const body = { email, password }; // 비구조화 할당
-    console.log(`Sending body: ${body}`); // 템플릿 리터럴로 변경
+    const body = { email, password };
+    console.log(`Sending body: ${body}`);
     return apiFetch(LOGIN_URL, LOGIN_HEADER, body);
 }
 

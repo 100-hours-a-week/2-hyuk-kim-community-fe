@@ -48,13 +48,13 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function fetchGetNickname(email, textEmail, nicknameInput) {
-    const url = GET_NICKNAME_URL.replace(':email', email);
-    apiFetch(url, GET_NICKNAME_HEADER)
+    // const url = GET_NICKNAME_URL.replace(':email', email);
+    apiFetch(GET_NICKNAME_URL, GET_NICKNAME_HEADER)
         .then(result => {
             console.log(`get nickname success!! : ${result}`);
             if (result) {
-                textEmail.textContent = email;
-                nicknameInput.value = result;
+                textEmail.textContent = result.email;
+                nicknameInput.value = result.nickname;
             } else console.log('get nickname failed!!');
         })
         .catch(console.error);

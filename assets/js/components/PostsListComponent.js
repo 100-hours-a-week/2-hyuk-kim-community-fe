@@ -26,7 +26,7 @@ class PostsListComponent extends HTMLElement {
         ${Object.keys(fields)
             .map(key => {
                 return `
-            <section id="post-preview" data-id="${key}">
+            <section id="post-preview" data-id="${fields[key].id}">
                 <article id="post-info-article">
                     <p id="post-title">${fields[key].title}</p>
                     <div class="post-info">
@@ -34,7 +34,7 @@ class PostsListComponent extends HTMLElement {
                             <span class="text-metadata">좋아요&nbsp</span> <span id="count-like" class="count">${fields[key].countLike}</span>
                             <span class="text-metadata">댓글&nbsp</span> <span id="count-comment" class="count">${fields[key].countComment}</span>
                             <span class="text-metadata">조회수&nbsp</span> <span id="count-view" class="count">${fields[key].countView}</span>
-                            <span class="date-post">${fields[key].date}</span>
+                            <span class="date-post">${fields[key].createat}</span>
                         </div>
                     </div>
                 </article>
@@ -76,13 +76,13 @@ async function getPostList() {
             if (result) {
                 Object.keys(result).forEach(key => {
                     result[key].countLike = updateNumberForm(
-                        result[key].countLike,
+                        result[key].count_like,
                     );
                     result[key].countComment = updateNumberForm(
-                        Object.keys(result[key].comment).length,
+                        result[key].comment_count,
                     );
                     result[key].countView = updateNumberForm(
-                        result[key].countView,
+                        result[key].count_view,
                     );
                 });
 

@@ -46,14 +46,14 @@ class Comment extends HTMLElement {
         ${Object.keys(fields)
             .map(key => {
                 return `
-          <article id="article-comment-list" data-id="${key}">
-          <div id="email-date" data-email="${fields[key].email}"></div>
+          <article id="article-comment-list" data-id="${fields[key].id}">
+          <div id="user-data" data-user="${fields[key].user_id}"></div>
             <div class="post-metadata">
                 <div class="comment-data">
                     <div class="author-info">
                         <img class="img-profile" src="/assets/images/profile.webp" alt="profile">
                         <p class="author-name">${fields[key].nickname}</p>
-                        <span class="date-post">${fields[key].date}</span>
+                        <span class="date-post">${fields[key].createat}</span>
                     </div>
                     <p class="content">${fields[key].content}</p>
                 </div>
@@ -61,7 +61,7 @@ class Comment extends HTMLElement {
                   <button type="button" id="button-comment-update" class="button-comment"> 수정 </button>
                   <button type="button" id="button-comment-delete" class="button-comment"> 삭제 </button>
                 </div>
-                <modal-component id="modal-comment-${key}"></modal-component> 
+                <modal-component id="modal-comment-${fields[key].id}"></modal-component> 
             </div>
           </div>
           </article>
@@ -86,16 +86,16 @@ class Comment extends HTMLElement {
         buttonCreate.addEventListener('click', event => {
             if (updateCommentId === '') {
                 console.log('content : ', textAreaComment.value);
-                console.log('email : ', sessionStorage.getItem('email'));
+                console.log('userId : ', sessionStorage.getItem('userId'));
                 fetchCreateComment(
                     textAreaComment.value,
-                    sessionStorage.getItem('email'),
+                    sessionStorage.getItem('userId'),
                 );
             } else {
                 fetchUpdateComment(
                     updateCommentId,
                     textAreaComment.value,
-                    sessionStorage.getItem('email'),
+                    sessionStorage.getItem('userId'),
                 );
                 updateCommentId = '';
                 buttonCreate.textContent = '댓글 등록';
@@ -121,12 +121,12 @@ class Comment extends HTMLElement {
                 );
 
                 const commentId = comment.getAttribute('data-id');
-                const commentEmail = comment
-                    .querySelector('#email-date')
-                    .getAttribute('data-email');
+                const commentUser = comment
+                    .querySelector('#user-data')
+                    .getAttribute('data-user');
                 const modalId = '#modal-comment-' + commentId;
                 const modal = this.shadowRoot.querySelector(modalId);
-                if (commentEmail !== sessionStorage.getItem('email')) {
+                if (commentUser !== sessionStorage.getItem('userId')) {
                     buttonArea.style.visibility = 'hidden';
                     return;
                 }
@@ -156,8 +156,8 @@ class Comment extends HTMLElement {
     }
 }
 
-async function fetchCreateComment(content, email) {
-    const body = { postId, content, email };
+async function fetchCreateComment(content, userId) {
+    const body = { postId, content, userId };
     try {
         const result = await apiFetch(CREATE_COMMENT_URL, CREATE_COMMENT_HEADER, body);
         if (result) {
@@ -171,8 +171,8 @@ async function fetchCreateComment(content, email) {
     }
 }
 
-async function fetchUpdateComment(id, content, email) {
-    const body = { email, content };
+async function fetchUpdateComment(id, content, userId) {
+    const body = { userId, content };
     try {
         const result = await apiFetch(UPDATE_COMMENT_URL.replace(':commentId', id), UPDATE_COMMENT_HEADER, body);
         if (result) {
