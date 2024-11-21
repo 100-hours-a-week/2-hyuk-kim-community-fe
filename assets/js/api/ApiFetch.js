@@ -4,7 +4,8 @@ export default async function apiFetch(endpoint, method, body = null) {
         headers: {
             method: method,
             'Content-Type': 'application/json',
-            'sessionid': `${sessionStorage.getItem('sessionId')}` || null
+            'sessionid': `${sessionStorage.getItem('sessionId')}` || null,
+            'userid': `${sessionStorage.getItem('userId')}` || null
         },
     };
 
@@ -18,7 +19,6 @@ export default async function apiFetch(endpoint, method, body = null) {
         throw error;
     }
     const json = await response.json();
-    console.log(`await response.json() : ${JSON.stringify(json)}`);
-    console.log(`await response.json().data : ${JSON.stringify(json.data)}`);
+    console.log(`json : ${JSON.stringify(json)}`);
     return (json.data) || '';
 }

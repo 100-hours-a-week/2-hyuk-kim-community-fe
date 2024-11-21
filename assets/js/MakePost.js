@@ -37,9 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     endButton.addEventListener('click', async e => {
-        if (!sessionStorage.getItem('email')) return;
+        if (!sessionStorage.getItem('userId')) return;
         await fetchCreatePost(
-            sessionStorage.getItem('email'),
+            sessionStorage.getItem('userId'),
             inputTitle.value,
             inputContent.value,
         );
@@ -48,8 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-async function fetchCreatePost(email, title, content) {
-    const body = { email, title, content };
+async function fetchCreatePost(userId, title, content) {
+    const body = { userId, title, content };
     apiFetch(CREATE_POST_URL, CREATE_POST_HEADER, body)
         .then(result => {
             console.log(`create post success!! : ${result}`);
