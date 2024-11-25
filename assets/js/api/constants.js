@@ -1,4 +1,5 @@
-const BASE_URL = 'http://localhost:3001/api';
+// const BASE_URL = 'http://localhost:3001/api';
+const BASE_URL = 'http://3.39.229.64:3001/api';
 
 /*
 URL HEADER 두개로 나누는 게 아닌 login 변수 내에 url, method 두개로 나누는 게 더 좋을듯.
