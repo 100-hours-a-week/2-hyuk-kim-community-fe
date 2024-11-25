@@ -5,7 +5,11 @@
   "type": "module",
   "main": "html/LoginPage.html",
   "scripts": {
-    "start": "node app.js",
+    "start": "pm2 start ./config/pm2.config.cjs --only front-product",
+    "dev": "pm2 start ./config/pm2.config.cjs --only front-dev",
+    "stop": "pm2 stop all",
+    "monitor": "pm2 monit",
+
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -20,6 +24,7 @@
     "express": "^4.21.1",
     "open": "^10.1.0",
     "path": "^0.12.7",
+    "pm2": "^5.4.3",
     "prettier": "^3.3.3"
   },
   "devDependencies": {
